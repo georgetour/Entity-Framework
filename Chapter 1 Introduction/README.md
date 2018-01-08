@@ -149,7 +149,7 @@ WHERE YOU CREATE THE DBCONTEXT</strong></p>
 <ul>
 <li>Full versioning of database with any migration you make</li>
 <li>Productivity since it's faster to write code than use mouse</li>
-<li>Deeper learning curve<li>
+<li>Deeper learning curve</li>
 <li>Maybe you have a legacy database deployment tool so you might not be able to use code </li>
 
 </ul>
