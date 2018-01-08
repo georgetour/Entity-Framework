@@ -16,9 +16,10 @@ namespace DatabaseFirstDemo
             //Create new post
             var post = new Post()
             {
-                Body = "Body2",
+                Body = "Μπομπ2",
                 DatePublished = DateTime.Now,
                 Title = "Title2"
+                
             };
 
             //Add post to memory

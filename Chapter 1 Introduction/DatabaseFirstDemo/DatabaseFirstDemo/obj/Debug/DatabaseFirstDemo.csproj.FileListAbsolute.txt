@@ -8,3 +8,13 @@ C:\Users\Giant\documents\visual studio 2015\Projects\DatabaseFirstDemo\DatabaseF
 C:\Users\Giant\documents\visual studio 2015\Projects\DatabaseFirstDemo\DatabaseFirstDemo\obj\Debug\DatabaseFirstDemo.csprojResolveAssemblyReference.cache
 C:\Users\Giant\documents\visual studio 2015\Projects\DatabaseFirstDemo\DatabaseFirstDemo\obj\Debug\DatabaseFirstDemo.exe
 C:\Users\Giant\documents\visual studio 2015\Projects\DatabaseFirstDemo\DatabaseFirstDemo\obj\Debug\DatabaseFirstDemo.pdb
+C:\Users\Giant\Documents\Visual Studio 2015\Projects\Entity Framework\Chapter 1 Introduction\DatabaseFirstDemo\DatabaseFirstDemo\bin\Debug\DatabaseFirstDemo.exe.config
+C:\Users\Giant\Documents\Visual Studio 2015\Projects\Entity Framework\Chapter 1 Introduction\DatabaseFirstDemo\DatabaseFirstDemo\obj\Debug\DatabaseFirstDemo.exe
+C:\Users\Giant\Documents\Visual Studio 2015\Projects\Entity Framework\Chapter 1 Introduction\DatabaseFirstDemo\DatabaseFirstDemo\obj\Debug\DatabaseFirstDemo.pdb
+C:\Users\Giant\Documents\Visual Studio 2015\Projects\Entity Framework\Chapter 1 Introduction\DatabaseFirstDemo\DatabaseFirstDemo\bin\Debug\DatabaseFirstDemo.exe
+C:\Users\Giant\Documents\Visual Studio 2015\Projects\Entity Framework\Chapter 1 Introduction\DatabaseFirstDemo\DatabaseFirstDemo\bin\Debug\DatabaseFirstDemo.pdb
+C:\Users\Giant\Documents\Visual Studio 2015\Projects\Entity Framework\Chapter 1 Introduction\DatabaseFirstDemo\DatabaseFirstDemo\bin\Debug\EntityFramework.dll
+C:\Users\Giant\Documents\Visual Studio 2015\Projects\Entity Framework\Chapter 1 Introduction\DatabaseFirstDemo\DatabaseFirstDemo\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Giant\Documents\Visual Studio 2015\Projects\Entity Framework\Chapter 1 Introduction\DatabaseFirstDemo\DatabaseFirstDemo\bin\Debug\EntityFramework.xml
+C:\Users\Giant\Documents\Visual Studio 2015\Projects\Entity Framework\Chapter 1 Introduction\DatabaseFirstDemo\DatabaseFirstDemo\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Giant\Documents\Visual Studio 2015\Projects\Entity Framework\Chapter 1 Introduction\DatabaseFirstDemo\DatabaseFirstDemo\obj\Debug\DatabaseFirstDemo.csprojResolveAssemblyReference.cache

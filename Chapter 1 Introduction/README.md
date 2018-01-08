@@ -43,9 +43,16 @@
 </section>
 
 <section>
+<h3>Installation of Sql Express</h3>
+<p>
+https://www.youtube.com/watch?v=E_zFM7mzFUg <br>
+https://www.youtube.com/watch?v=WKWZZcrin5I
 
+Then you need to connect with Microsoft SQL Server Management Studio or from Visual Studio.
+</p>
 <h4>Installation and Database first approach</h4>
-<p>To create a database you can use either Microsoft SQL server management studio or from Visual Studio. You go to Object Explorer as shown in <strong>object_explorer.jpg</strong> and then you create a database as in <strong>new_database.jpg </strong>.Similarly you create tables etc.</p>
+
+<p>To create a database you can use either Microsoft SQL Server Management Studio or from Visual Studio. You go to Object Explorer as shown in <strong>object_explorer.jpg</strong> and then you create a database as in <strong>new_database.jpg </strong>.Similarly you create tables etc.</p>
 
 <p>To use Entity framework we have to install it from Nuget Package Manager as shown <strong>entity-installation.jpg</strong>. Then at Package Manager Console we write : <br> install-package EntityFramework</p>
 
@@ -104,4 +111,47 @@ context.SaveChanges();
 <p>We didn't have to work with ADO.NET  classes like sequel connection and sequel commnd. Entiyty framework took care eveything</p>
 
 <p>To verify eveything went smoothly go to Management Studio and check <strong>show_rows_from_table.jpg</strong>
+</section>
+
+<section>
+<h4>Code first approach</h4>
+<p>First we create our application. Then we install entity framework similiar with the above installation. With code first we start with code so we don't have to go to Management Studio.</p>
+
+<p>Create a class with the properties that you want to be
+in table. The class name's will be the table's name and the properties its columns. We also need a DbContext which is an abstraction that is used over the database so we can load our saved data as shown in <strong>code_first_dbcontext.jpg</strong></p>
+
+<h5>Specify the connection string to database</h5>
+<p>Go to App.config as shown in <strong>code_first_app_config.jpg</strong>. Then you add your connection string which must be the same name as your Dbcontext as shown in <strong>code_first_dbcontext.jpg</strong>. The connection string at App.config should look like <strong>
+code_first_connection_string.jpg
+</strong>. The initial catalog is the database name  and integrated security means we use Windows Authentication.
+Finally we have to give providerName which is System.Data.Sqlclient. It is requiered so code first works.
+</p>
+
+<p>After the above we need to enable code first migrations. Again at Package Manager Console we type enable-migrations</p>
+
+<p><strong>DON'T FORGET TO HAVE <BR> using System.Data.Entity; <br>
+WHERE YOU CREATE THE DBCONTEXT</strong></p>
+
+<p>All the above are done once. If we want to make changes to our model we start with the code. Every time we make a change we should add a migration. We go to Package Manager Console and we write add-migration along with a name of what we did.</p>
+
+<p>We will get the migration as shown in <strong>code_first_migration_finished.jpg
+</strong>and a new folder created called Migrations. Inside this foder we have the migration's name with date time stamp.
+</p>
+
+<p>With code first migrations we can take any database and take it to any version whether that version is higher or lower and this is very powerful if you maintaining different versions of an application.</p>
+
+<p>Then we have to run it. Entity framework looks at the database and figures out what migrations need to run on the database to bring it up to date. It will get the migration classes converts them to SQL code and runs it on a database. To run the migration back at the Package Manager Consolewe write : <br> update-database</p>
+</section>
+
+<section>
+<h6>Code First or Database first</h6>
+<p>It's matter of personal opinion and both can do exactly same stuff. With Code First you have:</p>
+<ul>
+<li>Full versioning of database with any migration you make</li>
+<li>Productivity since it's faster to write code than use mouse</li>
+<li>Deeper learning curve<li>
+<li>Maybe you have a legacy database deployment tool so you might not be able to use code </li>
+
+</ul>
+
 </section>
