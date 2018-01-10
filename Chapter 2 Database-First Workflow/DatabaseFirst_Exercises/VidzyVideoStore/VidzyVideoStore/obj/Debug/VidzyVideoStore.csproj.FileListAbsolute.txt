@@ -1,0 +1,6 @@
+c:\users\giant\documents\visual studio 2015\Projects\VidzyVideoStore\VidzyVideoStore\bin\Debug\VidzyVideoStore.exe.config
+c:\users\giant\documents\visual studio 2015\Projects\VidzyVideoStore\VidzyVideoStore\bin\Debug\VidzyVideoStore.exe
+c:\users\giant\documents\visual studio 2015\Projects\VidzyVideoStore\VidzyVideoStore\bin\Debug\VidzyVideoStore.pdb
+c:\users\giant\documents\visual studio 2015\Projects\VidzyVideoStore\VidzyVideoStore\obj\Debug\VidzyVideoStore.csprojResolveAssemblyReference.cache
+c:\users\giant\documents\visual studio 2015\Projects\VidzyVideoStore\VidzyVideoStore\obj\Debug\VidzyVideoStore.exe
+c:\users\giant\documents\visual studio 2015\Projects\VidzyVideoStore\VidzyVideoStore\obj\Debug\VidzyVideoStore.pdb

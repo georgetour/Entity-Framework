@@ -62,6 +62,10 @@ Then you need to connect with Microsoft SQL Server Management Studio or from Vis
 
 <p>To connect to the database we need server name, database name and credentials as shown in <strong>connect_to_database.jpg</strong>.Test connection to see if everything works fine. Now entity frameworks looks at our database and discovers the table views and stored procedures as shown in <strong>ef_mappiong_ready.jpg</strong></p>
 
+<h5>Create a relation in Management Studio</h5>
+
+<p>https://www.youtube.com/watch?v=PHjwX-cexIA</p>
+
 <h4>Entity Data Model edmx</h4>
 
 <p>Edmx is our data model that is created by entity framework so we can use it as shown in <strong>edmx.jpg</strong>. When expanding the edmx file we will see a tt extension which stands for T for template. It's a way to generate code based on a template. If we expand this we ll see the actual generated code as shown in <strong>edmx_exapnded.jpg</strong>.

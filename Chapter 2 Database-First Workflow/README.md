@@ -81,11 +81,11 @@ We have 3 subsections. Storage models which is the representation of our databas
 
 <h3>Delete table</h3>
 
-<p>If we delete something in management studio after we update model in visual studio we will see it appear in Delete tab. We will see an error so we have to remove it manually from our model.</p>
+<p>If we delete something in management studio after we update model in visual studio we will see it appear in Delete tab. We will see an error so we have to remove the mapping manually from our model as in <strong>delete_association_mapping.jpg</strong> </p>
 
 <h3>Stored procedures</h3>
 
-<p>You can add them similarly by clicking in empty space Update Model from Database and then you will get <strong>stored_procedures.jpg</strong>.We have an option at the end that says Import selected stored rpocedures and functions into the entity model. With that clicked not only we nring these stored procedures and functions into our storage model but it will also create functions in our conceptual model that we can call to execute those procedures.</p>
+<p>You can add them similarly by clicking in empty space Update Model from Database and then you will get <strong>stored_procedures.jpg</strong>.We have an option at the end that says Import selected stored rpocedures and functions into the entity model. With that clicked not only we nring these stored procedures and functions into our storage model but it will also create functions in our conceptual model that we can call to execute those procedures. To change a stored procedure in Management Studio check <strong>change_stored_procedure_management.jpg</strong></p>
 
 <p>As shown in <strong>stored_procedures_into_model.jpg</strong> we see that we have these functions also in Function Imports and not only in our storage model. These functions or methods are available in our DbContext.Don't forget to save the model for every update. We have them now in Context class which derives from DbContext as you can see in DatabaseFirstProject. DbContext is one of the classes entity model creates so we have access to our database.</p>
 
