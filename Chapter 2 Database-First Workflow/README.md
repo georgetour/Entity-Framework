@@ -82,3 +82,45 @@ We have 3 subsections. Storage models which is the representation of our databas
 <h3>Delete table</h3>
 
 <p>If we delete something in management studio after we update model in visual studio we will see it appear in Delete tab. We will see an error so we have to remove it manually from our model.</p>
+
+<h3>Stored procedures</h3>
+
+<p>You can add them similarly by clicking in empty space Update Model from Database and then you will get <strong>stored_procedures.jpg</strong>.We have an option at the end that says Import selected stored rpocedures and functions into the entity model. With that clicked not only we nring these stored procedures and functions into our storage model but it will also create functions in our conceptual model that we can call to execute those procedures.</p>
+
+<p>As shown in <strong>stored_procedures_into_model.jpg</strong> we see that we have these functions also in Function Imports and not only in our storage model. These functions or methods are available in our DbContext.Don't forget to save the model for every update. We have them now in Context class which derives from DbContext as you can see in DatabaseFirstProject. DbContext is one of the classes entity model creates so we have access to our database.</p>
+
+<h4>Function imports</h4>
+
+<p>Double click the function you want <strong>function_imports.jpg</strong>. You can change the name of the function if you see a strange/legacy name. In the picture you see the return type of the method.</p>
+
+<ul>
+<li>None - is for void methods that don't return anything</li>
+<li>Scalars - return scalar characters like int string etc</li>
+<li>Complex - it's a complex dump data structure that does not support change tracking.When we change the state of these objects the changes aren't going to be reflected in our database when we save them. The complex types are show in your conceptual model in the folder Complex types. You only have to use a complex type when a stroed procedure joins two or more tables. Another use is when you have really large entities with many properties. To create one you choose Complex then Get Column Information and click Create New Complex Type</li>
+<li>Entities -  these are the classes we have in our entity data model</li>
+
+</ul>
+
+<p>So if we change the return type it is changed but it still remains in our conceptual model. We will have to delete the complex type manually.</p>
+
+<h4>Creating an enum as a type</h4>
+
+<h5>The first way is at our model as shown in <strong>create_enum.jpg</strong></h5>
+
+<p>You can have a mixed type enum which it can have more than one values by clicking <strong>mixed_type_enum.jpg</stong></p>
+
+<p>After we change the type to the newly created enum in properties of the model we will get an error for mapping.  We have to change the type to our database also. Validate so we have no errors. With the enum created we can have cleaner code.</p>
+
+<h5>The second way is to import an already created enum</h5>
+
+<p>First we create the enum normally in Visual studio.</p>
+<pre>
+[public enum Level:byte
+{
+  Beginner = 1,
+  Intermediate = 2,
+  Advanced = 3
+}
+
+</pre>
+<p>Then in our model in Enum Types we need to create a new enum. The name and type of this enum must be exactly like the one we already have. So we reference this external in the option at the end Reference external type. We specify the strongly typed name for this enum. So namespace and name.Finally we change the datatype of this property in properties and set it to name of enum.</p>

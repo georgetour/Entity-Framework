@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="49ae5cfb6855467bb1478b2e864de046" Name="Diagram1" ZoomLevel="83" DisplayType="true">
+      <Diagram DiagramId="49ae5cfb6855467bb1478b2e864de046" Name="Diagram1" ZoomLevel="125" DisplayType="true">
         <EntityTypeShape EntityType="PlutoModel.Author" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PlutoModel.Course" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="PlutoModel.CourseSection" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
