@@ -3,7 +3,7 @@
 
 <h2>Add existing database</h2>
 
-<p>If we have a database we can easily import the script to Microsoft SQL Server Management Studio. First we find the script we open it in our Server Management Studio and then as shown in <strong>import_script.jpg</strong></p>
+<p>If we have a database we can easily import the script to Microsoft SQL Server Management Studio. First we find the script we open it in our Server Management Studio and then as shown in <strong>import_script.jpg</strong> and then we press Execute.</p>
 
 <p>Then we add the database to our project. To do that we need to follow the steps below.</p>
 
@@ -17,6 +17,10 @@
   <li>Finally we will get our model as shown in <strong>edmx.jpg</strong></li>
 
 </ul>
+
+<h2>Export existing database</h2>
+
+<p>Right click the database itself, Tasks -> Generate Scripts. Follow the wizard.</p>
 
 <h3>EDMX</h3>
 

@@ -45,11 +45,21 @@
 <section>
 <h3>Installation of Sql Express</h3>
 <p>
+<h4>How to Install SQL Server 2014 Express and SQL Server Management Studio 2014 Express</h4>
 https://www.youtube.com/watch?v=E_zFM7mzFUg <br>
-https://www.youtube.com/watch?v=WKWZZcrin5I
+<h4>SQL Server - Creating a Database </h4>
+<p>The path created automatically is a little strange so we might need t change it and add the database to a folder we want. We will get two files one mdf which is something that sequel server handles and one ldf which has all the logs.
+<img src="new_database.jpg">
 
-Then you need to connect with Microsoft SQL Server Management Studio or from Visual Studio.
+<a href="https://www.youtube.com/watch?v=WKWZZcrin5I">https://www.youtube.com/watch?v=WKWZZcrin5I</a>
+<br>
 </p>
+</p>
+<h5>Options for database</h5>
+<p>While we create a new database we have some Options to modify
+<img src="database_options.jpg"> Also we can have a filegroup which is a location where files are stored. So we can have multiple files in various drives
+</p>
+
 <h4>Installation and Database first approach</h4>
 
 <p>To create a database you can use either Microsoft SQL Server Management Studio or from Visual Studio. You go to Object Explorer as shown in <strong>object_explorer.jpg</strong> and then you create a database as in <strong>new_database.jpg </strong>.Similarly you create tables etc.</p>
