@@ -55,6 +55,19 @@ https://www.youtube.com/watch?v=E_zFM7mzFUg <br>
 <br>
 </p>
 </p>
+
+<h4><strong>!IMPORTANT Database with foreign characters</strong></h4>
+
+<p>Some characters like greek characters will not appear as supposed in database or searches even if you have used nvarchar. To fix this you either have to select correct collation in daabase creation <img src="collation_and_encoding.jpg"> or in your queries before the string literal you should put N
+<pre>
+INSERT Authors 
+	([Name], Biography, DateAdded)
+VALUES ('Stephen King',N'Το Lorem Ipsum είναι απλά ένα κείμενο', 'January 18,2018')
+
+</pre>
+</p>
+
+
 <h5>Options for database</h5>
 <p>While we create a new database we have some Options to modify
 <img src="database_options.jpg"> Also we can have a filegroup which is a location where files are stored. So we can have multiple files in various drives
@@ -63,6 +76,8 @@ https://www.youtube.com/watch?v=E_zFM7mzFUg <br>
 <h4>Installation and Database first approach</h4>
 
 <p>To create a database you can use either Microsoft SQL Server Management Studio or from Visual Studio. You go to Object Explorer as shown in <strong>object_explorer.jpg</strong> and then you create a database as in <strong>new_database.jpg </strong>.Similarly you create tables etc.</p>
+
+<h4><strong></strong></h4>
 
 <p>To use Entity framework we have to install it from Nuget Package Manager as shown <strong>entity-installation.jpg</strong>. Then at Package Manager Console we write : <br> install-package EntityFramework</p>
 

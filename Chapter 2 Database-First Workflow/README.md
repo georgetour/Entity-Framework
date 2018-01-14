@@ -21,6 +21,10 @@
 <h2>Export existing database</h2>
 
 <p>Right click the database itself, Tasks -> Generate Scripts. Follow the wizard.</p>
+<img src="exporting_database.jpg">
+<p>You can export it also as excel sheet in Tasks -> Export Data. <br>
+Also note to have schema and data<img src="exporting_database_full.jpg">
+</p>
 
 <h3>EDMX</h3>
 
