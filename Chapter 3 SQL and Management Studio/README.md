@@ -40,12 +40,20 @@ To run a query you click Execute or Ctrl+e in a chosen highlighted script. To ch
 <li><strong>Primary key</strong> - This is a unique key/id so we can differentiate our rows. For example if we had two same names in our database. That's why primary key is unique. To create a primary key you right click in the column you want and also you must choose (Is Identity)
 <img src="set_primary_key_and_identity.jpg">
 </li>
+
 <li><strong>Allow nulls</strong> - if not clicked we always have to force sql server to have data</li>
+
 <li>nvarchar - stores string data and is preferred against varchar since it holds any unicode characters </li>
+
 <li><strong>nchar</strong> - you should always put exact characters while in nvarchar is up to characters </li>
+
 <li><strong>datetime</strong> -
 <a href="https://docs.microsoft.com/en-us/sql/t-sql/data-types/datetime-transact-sql">https://docs.microsoft.com/en-us/sql/t-sql/data-types/datetime-transact-sql</a> Used for dates and according to what we use it has precision to seconds etc which might not be needed. The best option is smalldatetime. It is stored as literal string and sequel server will manage the casting to datetime. We must be careful with dateformats,languages and conversions</li>
-<li><strong>bit</strong> - it's used for boolean values like 0,1</li>
+<li><strong>bit</strong> - it's used for boolean values by putting 0/1</li>
+
+<li><strong>uniqueidentifier</strong> - This is something unique created and it's very hard to have something same in whole oever the world. If it's our primary key we have to set RowGuid at its properties at Yes.</li>
+
+<li><strong>smallmoney</strong> - Data types that represent monetary or currency values. </li>
 
 </ul>
 <h4><strong>!IMPORTANT Database with foreign characters</strong></h4>
@@ -66,6 +74,23 @@ VALUES ('Stephen King',N'Το Lorem Ipsum είναι απλά ένα κείμε�
 </li>
 
 </ul>
+
+<h4>Connecting tables and <strong>Foreign Keys</strong> </h4>
+
+<p>First click new Foreign Key in the column in Keys
+<img src="foreign_keys.jpg">
+</p>
+
+<p>Then we must make the relation
+<img src="relate_foreign_keys.jpg">
+</p>
+
+<h3>Editing tables</h3>
+
+<p>Go to design view
+<img src="editing_tables_from_ssms.jpg">
+We also can edit rows by choosing Edit Top 200 rows. By right clicking you can choose to delete the row also.
+</p>
 
 <h4>SQL Syntax </h4>
 <p>Microsoft uses the T-SQL(Transcat Structured Query Language) standard. You can use either " " or the most common case is to use [ ] for the the names.<br>
@@ -88,7 +113,7 @@ VALUES ('Stephen King',N'Το Lorem Ipsum είναι απλά ένα κείμε�
 <pre>
 INSERT Authors
 	([Name], Biography, DateAdded)
-VALUES ('Stephen King','Το Lorem Ipsum είναι απλά ένα κείμενο χωρίς νόημα για τους επαγγελματίες της τυπογραφίας και στοιχειοθεσίας. Το Lorem Ipsum είναι το επαγγελματικό πρότυπο όσον αφορά το κείμενο χωρίς νόημα, από τον 15ο αιώνα, όταν ένας ανώνυμος τυπογράφος πήρε ένα δοκίμιο και ανακάτεψε τις λέξεις για να δημιουργήσει ένα δείγμα βιβλίου. Όχι μόνο επιβίωσε πέντε αιώνες, αλλά κυριάρχησε στην ηλεκτρονική στοιχειοθεσία, παραμένοντας με κάθε τρόπο αναλλοίωτο. Έγινε δημοφιλές τη δεκαετία του 60 με την έκδοση των δειγμάτων της Letraset όπου περιελάμβαναν αποσπάσματα του Lorem Ipsum, και πιο πρόσφατα με το λογισμικό ηλεκτρονικής σελιδοποίησης όπως το Aldus PageMaker που περιείχαν εκδοχές του Lorem Ipsum.', 'January 18,2018')
+VALUES ('Stephen King','Το Lorem Ipsum είναι απλά ένα κείμενο ', 'January 18,2018')
 
 </pre>
 

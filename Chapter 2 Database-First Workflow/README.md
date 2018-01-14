@@ -49,7 +49,7 @@ We have 3 subsections. Storage models which is the representation of our databas
 
 <p>As we see in Storage model we have all info about the database, tables, properties etc.</p>
 
-<p>In our ConceptualModel we have our entities. Their names, properties, types etc. ConceptualModel is very close to storage/database model.</p>
+<p>In our Conceptual Model we have our entities. Their names, properties, types etc. Conceptual Model is very close to storage/database model.</p>
 
 <p>Mapping model is the connection between Storage and Conceptual models. As we see in <strong>mapping.jpg</strong> we can see clearly the relation created between columns and properties. We can change our Conceptual model and mapping model will make sure that is persisted with storage model.</p>
 
@@ -79,7 +79,7 @@ We have 3 subsections. Storage models which is the representation of our databas
 
 <h4>Modify/delete a column</h4>
 
-<p>Choose the table and click design to see all columns. Just make the changes you want or delete the columnd that isn't needed anymore. You also have to enable changes as show in <strong>enable_changes_to_tables.jpg</strong>. Update the model from database. We will get errors that warns us that the changes we made are not mapped. If it doesn't pops up you can right click in empty area in our model and select validate. </p>
+<p>Choose the table and click design to see all columns. Just make the changes you want or delete the column that isn't needed anymore. You also have to enable changes in tools as show in <img src="enable_changes_to_tables.jpg"><br><br> Update the model from database. We will get errors that warns us that the changes we made are not mapped. If it doesn't pops up you can right click in empty area in our model and select validate. </p>
 
 <p>Entity framework doesn't see it if we rename something it sees that as a new column. So you have to delete the existing property that stayed there. Even if we change a type in database while it knows that in database is the new type it won't be changed in our model and we will have a validation error. You should change it manually in its properties window.</p>
 
