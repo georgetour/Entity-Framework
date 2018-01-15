@@ -14,6 +14,7 @@ the New Query as shown <strong>queries_management_studio.jpg</strong>.
 <p>
 To run a query you click Execute or Ctrl+e in a chosen highlighted script. To check if we have written correct the query we can click Parse.
 <img src="execute_query.jpg">
+To save queries/scripts as sql file you can click the blue diskette.
 </p>
 
 

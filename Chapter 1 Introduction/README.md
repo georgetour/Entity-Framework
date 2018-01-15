@@ -47,7 +47,8 @@
 <p>
 <h4>How to Install SQL Server 2014 Express and SQL Server Management Studio 2014 Express</h4>
 https://www.youtube.com/watch?v=E_zFM7mzFUg <br>
-<h4>SQL Server - Creating a Database </h4>
+
+<h4>SQL Server - Create a Database </h4>
 <p>The path created automatically is a little strange so we might need t change it and add the database to a folder we want. We will get two files one mdf which is something that sequel server handles and one ldf which has all the logs.
 <img src="new_database.jpg">
 
@@ -60,7 +61,7 @@ https://www.youtube.com/watch?v=E_zFM7mzFUg <br>
 
 <p>Some characters like greek characters will not appear as supposed in database or searches even if you have used nvarchar. To fix this you either have to select correct collation in daabase creation <img src="collation_and_encoding.jpg"> or in your queries before the string literal you should put N
 <pre>
-INSERT Authors 
+INSERT Authors
 	([Name], Biography, DateAdded)
 VALUES ('Stephen King',N'Το Lorem Ipsum είναι απλά ένα κείμενο', 'January 18,2018')
 

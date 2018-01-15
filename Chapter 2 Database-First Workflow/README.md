@@ -18,12 +18,18 @@
 
 </ul>
 
-<h2>Export existing database</h2>
+<h2>Export save existing database</h2>
 
 <p>Right click the database itself, Tasks -> Generate Scripts. Follow the wizard.</p>
 <img src="exporting_database.jpg">
 <p>You can export it also as excel sheet in Tasks -> Export Data. <br>
 Also note to have schema and data<img src="exporting_database_full.jpg">
+</p>
+
+<h2>Backup/Restore database</h2>
+
+<p>We also have the option to backup the database and restore it somewhere else.
+<img src="backup-restore.jpg">
 </p>
 
 <h3>EDMX</h3>
