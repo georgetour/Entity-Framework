@@ -1,4 +1,3 @@
-
 <h1>SQL and Management Studio</h1>
 
 <h2>Running queries through management studio</h2>
@@ -114,7 +113,7 @@ We also can edit rows by choosing Edit Top 200 rows. By right clicking you can c
 <pre>
 INSERT Authors
 	([Name], Biography, DateAdded)
-VALUES ('Stephen King','Το Lorem Ipsum είναι απλά ένα κείμενο ', 'January 18,2018')
+VALUES ('Stephen King','Το Lorem Ipsum είναι ένα κείμενο ', 'January 18,2018')
 
 </pre>
 
@@ -125,3 +124,119 @@ SELECT * FROM Authors
 </pre>
 
 <p>Or we can return the columns we want by their names and comma between instead of asterisk.</p>
+
+<h5>WHERE clause</h5>
+
+<p></p>With WHERE we can limit the results and return results we want.
+<br>
+<br>
+<p>It wil return Title and price with price <= 15 from authorID 3
+</p>
+<p>
+SELECT [Title],[Price] FROM Books WHERE Price <= 15 AND AuthorId = 3
+</p>
+
+<p>It wil return all books that have an image file.
+</p>
+<p>
+SELECT * FROM Books WHERE ImageFile IS NOT NULL
+</p>
+
+
+<h5>Update/Delete rows</h5>
+
+<p>
+UPDATE Publishers SET [Name] = 'Random House' WHERE [Name] = 'Penguin Random House'
+</p>
+
+<p>If you want to update multiple columns you just put a comma between.</p>
+
+UPDATE Books SET [Price] = 7.99, ImageFile = 'Slaughter House.jpg' <br>
+WHERE [BookId] = '25D21FFD-9840-47CE-B3C4-179C3E750CC2'
+</p>
+
+<p><strong>If we have a foreign key relation between two tables and we try to delete a row sql server will not allow this to happen.</strong> To work around it we must first delete the rows that have the foreign key and then the rows at second table. </p>
+<p>
+DELETE FROM Publishers WHERE PublisherId = 1
+</p>
+
+<p><strong>ALWAYS USE WHERE else you will mess the database</strong></p>
+
+<h5>Delete tables and Databases</h5>
+<p>To drop a table we can either right click and select Delete in management studio or write a query : </p>
+<p>DROP Table Books</p>
+
+<p>To drop a database right click on it and then select Delete in Management Studio or right click and Script Database DROP TO</p>
+
+<h5>Selecting and relating Multiple Tables with INNER JOIN </h5>
+
+<p>Return Books title, Authors Name, Publishers name from books since books have all foreign relationships. We use INNER JOIN to refer to the table and the ON keyword to have the relationship which in our case Books.AuthorId is same with Authors.Id.
+</p>
+<pre>
+SELECT Books.Title , Authors.[Name],Publishers.[Name]
+FROM Books
+INNER JOIN Authors ON Books.AuthorId = Authors.AuthorId
+INNER JOIN Publishers ON Books.PublisherId = Publishers.PublisherId
+
+</pre>
+
+<h5>Selecting and relating Multiple Tables with INNER JOIN  - Using Column and Table Aliases. AS KEYWORD</h5>
+
+<p>Since we can have columns that have same names we can change them and make them appear as we want using the AS keyword which makes aliases. The below will return a column named Book Title, a column Author, a column Publisher. </p>
+
+<pre>
+SELECT Books.Title AS 'Book Title', Authors.[Name] AS 'Author',Publishers.[Name] AS 'Publisher'
+FROM Books
+INNER JOIN Authors ON Books.AuthorId = Authors.AuthorId
+INNER JOIN Publishers ON Books.PublisherId = Publishers.PublisherId
+
+</pre>
+
+<p>We also have the option to return our query to a file or text and we can change how it appears as shown in
+<img src="query_to_text.jpg">
+</p>
+
+<p>Also we can use small referall names like a b c etc.</p>
+
+<pre>
+SELECT b.Title AS 'Book Title', a.[Name] AS 'Author',p.[Name] AS 'Publisher'
+FROM Books b
+INNER JOIN Authors a ON Books.AuthorId = Authors.AuthorId
+INNER JOIN Publishers p ON Books.PublisherId = Publishers.PublisherId
+
+</pre>
+
+<h5>Order Rows </h5>
+
+<p>To rder rows we use the ORDER BY keyword and we can have descending or ascending result with the keywords ASC/DESC.
+
+</p>
+<pre>
+SELECT b.Title AS 'Book Title', a.[Name] AS 'Author',p.[Name] AS 'Publisher'
+FROM Books b
+INNER JOIN Authors a ON b.AuthorId = a.AuthorId
+INNER JOIN Publishers p ON b.PublisherId = p.PublisherId
+ORDER BY b.Title
+</pre>
+
+<p>If we have same results in order by in some columns we can put a comma and next ORDER BY.</p>
+<pre>
+SELECT * FROM Books ORDER BY Price ASC , Title DESC
+</pre>
+
+<h5>Use Count </h5>
+<p>The COUNT() function counts how many rows have a certain criteria.</p>
+<pre>
+SELECT COUNT(&ast;)AS 'Number of pizzas'
+FROM OrderItems
+</pre>
+
+
+<h4>Database Diagram</h4>
+
+<p>Management Studio has a tool in Database diagrams.
+<img src="database_diagram.jpg">
+Then you choose which tables to add in your diagram.You save the diagram by clicking the blue diskette. To another table in the diagram right click at white space and select the table. You can arrange them more nicely by right clicking in white space Arrange Tables. We can print the diagram. You can hover in lines to see the relations resize tables size etc. By right clicking in table you can choose table view with more info about it.
+<img src="table_view.jpg">
+
+<h5>Use Sum</h5>

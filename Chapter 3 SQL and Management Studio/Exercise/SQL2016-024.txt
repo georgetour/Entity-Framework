@@ -1,0 +1,51 @@
+Challenge: Papa Bob's Pizza
+
+1) Create a new database: PapaBobs
+
+2) Use the database diagram (PapaBobsDiagram.png) to create the database structure (tables, columns).
+
+3) In the following tables, add these "look up values":
+
+Crusts: Thin, Thick
+Sizes: Small, Medium, Large
+Order Statuses: Open, Complete
+
+4) Add the following customer and order information into the database:
+
+----------------------------
+
+Clark Kent
+123 E Main St
+Metropolis, NY
+201-555-1212
+
+2 Large thin-crust pizzas with cheese, sausage and mushrooms, $12 each (Open status, ordered today at 7pm)
+
+----------------------------
+
+Bruce Wayne
+456 W Arkham Ave.
+Gotham, NY
+302-555-5676
+
+1 medium thick-crust with cheese, onions, green peppers, bacon, $10 (Open status, ordered today at 7:10pm)
+
+----------------------------
+
+Lois Lane
+243 S 1st Ave.
+Metropolis, NY
+201-555-9999
+
+1 small thin-crust with no cheese, green peppers, $8 (Completed status, ordered today at 6:30pm)
+
+
+----------------------------
+
+5) Display all open orders
+
+6) Display all orders, sort orders by order datetime
+
+7) Bonus: how many pizzas were ordered today?  (Try to figure out how to use the COUNT function)
+
+8) Bonus: what was the total gross sales amount for today?  (Try to figure out how to use the SUM function)
