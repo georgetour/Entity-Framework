@@ -10,3 +10,9 @@ C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirstExis
 C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirstExistingDatabase\CodeFirstExistingDatabase\obj\Debug\CodeFirstExistingDatabase.pdb
 C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirstExistingDatabase\CodeFirstExistingDatabase\obj\Debug\CodeFirstExistingDatabase.Migrations.InitialModel.resources
 C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirstExistingDatabase\CodeFirstExistingDatabase\obj\Debug\CodeFirstExistingDatabase.csproj.GenerateResource.Cache
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirstExistingDatabase\CodeFirstExistingDatabase\obj\Debug\CodeFirstExistingDatabase.Migrations.InitialModel1.resources
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirstExistingDatabase\CodeFirstExistingDatabase\obj\Debug\CodeFirstExistingDatabase.Migrations.AddCategory.resources
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirstExistingDatabase\CodeFirstExistingDatabase\obj\Debug\CodeFirstExistingDatabase.Migrations.AddCategoriesTable.resources
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirstExistingDatabase\CodeFirstExistingDatabase\obj\Debug\CodeFirstExistingDatabase.Migrations.AddCategoriesData.resources
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirstExistingDatabase\CodeFirstExistingDatabase\obj\Debug\CodeFirstExistingDatabase.Migrations.AddDataToCategories.resources
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirstExistingDatabase\CodeFirstExistingDatabase\obj\Debug\CodeFirstExistingDatabase.Migrations.AddedCategoryToCoursesTable.resources

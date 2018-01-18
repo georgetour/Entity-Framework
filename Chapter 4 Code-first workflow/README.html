@@ -169,8 +169,79 @@ If you run the migration with an empty database it going to sync with this model
 If we have already the database we have to use a <strong>switch</strong>
 which is going to tell to entity framework that we all have these in our database so
 <pre>
- PM> add-migration InitalModel -IgnoreChnages - Force
+ PM> add-migration InitialModel -IgnoreChnages - Force
+</pre>
+
+You can only run one migration at a time.
+<pre>
+PM> update-database
 </pre>
 </p>
 
 <h4>ALWAYS MAKE SMALL CHANGES TO MIGRATIONS</h4>
+<h4>Adding a new class</h4>
+
+<ol>
+<li>Create the class</li>
+<li><strong>Make the class discoverable by adding it to our DbContext</strong><br>
+<pre>
+public virtual DbSet<Category> Categories { get; set; }
+</pre>
+If the migration exists use -Force
+</li>
+<li>Add primary key(Id or NameOfClassId)</li>
+<li>Add extra properties and create the migration with a database centric name
+  like AddCategoriesTable</li>
+  <li>Check the migrations
+    <img src="table_create_from_migration.jpg">
+  </li>
+
+</ol>
+<h5>SQL() method</h5>
+<p>This is a method that lets you create directly a query for your database.
+<pre>
+  public partial class AddDataToCategories : DbMigration
+      {
+          public override void Up()
+          {
+              Sql("INSERT INTO Categories (Name) VALUES ('Web Development')");
+              Sql("INSERT INTO Categories (Name) VALUES ('NET Framework')");
+          }
+
+          public override void Down()
+          {
+          }
+      }
+
+
+</pre>
+<strong>To clean package manager console type cls</strong>
+</p>
+
+<h4>Adding property to class</h4>
+
+<p>You go to the class you want to add the new property and then you create a new migration.
+  You can see the changes in the migration.
+<pre>
+  public partial class AddedCategoryToCoursesTable : DbMigration
+     {
+         public override void Up()
+         {
+             AddColumn("dbo.Courses", "Category_Id", c => c.Int());
+             CreateIndex("dbo.Courses", "Category_Id");
+             AddForeignKey("dbo.Courses", "Category_Id", "dbo.Categories", "Id");
+         }
+
+         public override void Down()
+         {
+             DropForeignKey("dbo.Courses", "Category_Id", "dbo.Categories");
+             DropIndex("dbo.Courses", new[] { "Category_Id" });
+             DropColumn("dbo.Courses", "Category_Id");
+         }
+     }
+</pre>
+Finally again you update-database
+<pre>
+PM> update-database
+</pre>
+</p>
