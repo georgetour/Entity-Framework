@@ -9,3 +9,6 @@ C:\Users\Giant\Documents\Visual Studio 2015\Projects\Entity Framework\Chapter 2 
 C:\Users\Giant\Documents\Visual Studio 2015\Projects\Entity Framework\Chapter 2 Database-First Workflow\DatabaseFirstProject\DatabaseFirstProject\obj\Debug\DatabaseFirstProject.csprojResolveAssemblyReference.cache
 C:\Users\Giant\Documents\Visual Studio 2015\Projects\Entity Framework\Chapter 2 Database-First Workflow\DatabaseFirstProject\DatabaseFirstProject\obj\Debug\DatabaseFirstProject.exe
 C:\Users\Giant\Documents\Visual Studio 2015\Projects\Entity Framework\Chapter 2 Database-First Workflow\DatabaseFirstProject\DatabaseFirstProject\obj\Debug\DatabaseFirstProject.pdb
+C:\C-Sharp-Projects\Entity Framework\Chapter 2 Database-First Workflow\DatabaseFirstProject\DatabaseFirstProject\bin\Debug\DatabaseFirstProject.exe.config
+C:\C-Sharp-Projects\Entity Framework\Chapter 2 Database-First Workflow\DatabaseFirstProject\DatabaseFirstProject\obj\Debug\DatabaseFirstProject.exe
+C:\C-Sharp-Projects\Entity Framework\Chapter 2 Database-First Workflow\DatabaseFirstProject\DatabaseFirstProject\obj\Debug\DatabaseFirstProject.pdb

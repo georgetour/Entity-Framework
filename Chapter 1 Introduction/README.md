@@ -80,7 +80,8 @@ VALUES ('Stephen King',N'Το Lorem Ipsum είναι απλά ένα κείμε�
 
 <h4><strong></strong></h4>
 
-<p>To use Entity framework we have to install it from Nuget Package Manager as shown <strong>entity-installation.jpg</strong>. Then at Package Manager Console we write : <br> install-package EntityFramework</p>
+<p>To use Entity framework we have to install it from Nuget Package Manager as shown <strong>entity-installation.jpg</strong>. Then at Package Manager Console we write : <br> install-package EntityFramework
+</p>
 
 <h5>Importing existing Database to project and Connecting to database</h5>
 
@@ -148,7 +149,18 @@ context.SaveChanges();
 <p>First we create our application. Then we install entity framework similiar with the above installation. With code first we start with code so we don't have to go to Management Studio.</p>
 
 <p>Create a class with the properties that you want to be
-in table. The class name's will be the table's name and the properties its columns. We also need a DbContext which is an abstraction that is used over the database so we can load our saved data as shown in <strong>code_first_dbcontext.jpg</strong></p>
+in table. The class name's will be the table's name and the properties its columns. We also need a DbContext which is an abstraction that is used over the database so we can load our saved data as shown in
+<pre>
+public class PlutoContext : DbContext
+{
+}
+</pre>
+ <img src="code_first_dbcontext.jpg">
+<strong>Don't forget to use </strong>
+<pre>
+using System.Data.Entity;
+</pre>
+ </p>
 
 <h5>Specify the connection string to database</h5>
 <p>Go to App.config as shown in <strong>code_first_app_config.jpg</strong>. Then you add your connection string which must be the same name as your Dbcontext as shown in <strong>code_first_dbcontext.jpg</strong>. The connection string at App.config should look like <strong>

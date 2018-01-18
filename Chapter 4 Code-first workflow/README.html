@@ -1,0 +1,176 @@
+
+<h1>Code-First workflow new database</h1>
+
+<h2>Create shortcuts in Visual Studio</h2>
+
+<p>We can easily create shortcut in Visual Studio by going to Tools -> Options. We search for what we want and by pressing the shortcut as shown
+<img src="visual_studio_shortcut.jpg">
+
+ </p>
+<h2>1. Add entity to project from nuget console package manager.</h2>
+
+<p>To use Entity framework we have to install it from Nuget Package Manager as shown <img src="entity-installation.jpg">. Then at Package Manager Console we write : <br> install-package EntityFramework
+</p>
+
+<h2>2. Db Context and access database tables</h2>
+<p>With code first workflow we write first our code classes, properties etc which is our model and then the db context which is a class with the database and derives from DbContext from Entity namespace.</p>
+
+<pre>
+public class PlutoContext : DbContext
+{
+}
+</pre>
+
+<p>
+Here we are gonna have a some Db sets. A Db set is a collection of objects that represent the tables in the database. With the below code we can access the Courses table in the database.
+</p>
+
+<pre>
+public DbSet<Course> Courses { get; set; }
+</pre>
+
+<h2>3. Specify the connection string</h2>
+
+<p>Go to application configuration file.
+<ul>
+<li>The name is name of the connection</li>
+<li>connectionString is where you are going to get the data</li>
+<li>initial catalog is the name of the database</li>
+<li>integrated security SSPI is windows authentication</li>
+<li>One more thing we need is providerName FOR CodeFirst </li>
+</ul>
+
+
+<pre>
+  <code>
+  &lt;connectionStrings&gt;
+    &lt;add name="DefaultConnection" connectionString="data source=Giant-PC\SQLExpress; initial catalog=PlutoCodeFirst; integrated security=SSPI" providerName="System.Data.SqlClient"/&gt;
+  &lt;/connectionStrings&gt;
+</code>
+</pre>
+If our name is different than the DbContext class we need to specify it as a constructor.
+<pre>
+public PlutoContext()
+      :base("name=DefaultConnection")
+{
+
+}
+</pre>
+</p>
+
+<h2>4. Migrate and enable migrations</h2>
+
+<p>We must enable the migrations at console.<br>
+  <strong>First check application for errors in Debug before migation.</strong>
+<pre>
+PM> enable-migrations
+</pre>
+</p>
+
+<p>Then we add the migration and give it a name.<br>
+<pre>
+PM> add-migration InitialModel
+</pre>
+We see the migration folder created. If entity framework since a property names Id will automatically
+figure out that's an identity column and a primary key.
+<img src="migration-folder.jpg">
+Also enity framework will create the relation with foreign key if we have a class in a class.
+<pre>
+  public class Course
+  {
+      public int Id { get; set; }
+      public string Title { get; set; }
+      public string Description { get; set; }
+      public CourseLevel Level { get; set; }
+      public float FullPrice { get; set; }
+      public Author Author { get; set; }
+      public IList<Tag> Tags { get; set; }
+
+  }
+</pre>
+And it created
+<pre>
+  CreateTable(
+      "dbo.Courses",
+      c => new
+          {
+              Id = c.Int(nullable: false, identity: true),
+              Title = c.String(),
+              Description = c.String(),
+              Level = c.Int(nullable: false),
+              FullPrice = c.Single(nullable: false),
+              Author_Id = c.Int(),
+          })
+      .PrimaryKey(t => t.Id)
+      .ForeignKey("dbo.Authors", t => t.Author_Id)
+      .Index(t => t.Author_Id);
+</pre>
+</p>
+
+<p>Finally we update the migartion to the database .<br>
+<pre>
+PM> update-database
+</pre>
+
+<h1>Code-First workflow with existing database </h1>
+
+<p>We can use code first workflow alos with an existing database.<br>
+Existing DB -> Model (make changes) -> Migration -> Existing DB<br>
+</p>
+<h2>Benefits</h2>
+<ul>
+  <li>Full versioning of database </li>
+  <li>Less time wasted in designers </li>
+</ul>
+
+<h2>Add new Item</h2>
+
+<p>
+  <img src="ado-net-new-item.jpg">
+</p>
+<p>
+  Then code first from database.
+  <img src="code-first-from-database.jpg">
+</p>
+<p>
+  Then specify the connection String
+  <img src="specify-the-connection-string.jpg">
+</p>
+
+<p>
+  Choose all tables except migration history since we don t want a migration history table to be created.
+  <img src="all-tables-except-migration-history.jpg">
+
+</p>
+
+<p> * * * * *  * * * * *  * * * * * </p>
+
+<h2>Migrations steps</h2>
+
+<p>Migrations as we saw are used
+  when we make changes to our model so they can applied to database.
+</p>
+
+<h3>1. Enable Migrations</h3>
+<p>
+<pre>
+PM> enable-migrations
+</pre>
+<img src="migration-folder.jpg">
+</p>
+
+
+<h3>2. Add Migrations</h3>
+<p>
+<pre>
+PM> add-migration NameOfMigration
+</pre>
+If you run the migration with an empty database it going to sync with this model.
+If we have already the database we have to use a <strong>switch</strong>
+which is going to tell to entity framework that we all have these in our database so
+<pre>
+ PM> add-migration InitalModel -IgnoreChnages - Force
+</pre>
+</p>
+
+<h4>ALWAYS MAKE SMALL CHANGES TO MIGRATIONS</h4>

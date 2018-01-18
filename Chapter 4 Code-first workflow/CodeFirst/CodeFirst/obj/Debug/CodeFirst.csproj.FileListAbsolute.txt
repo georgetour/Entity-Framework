@@ -1,0 +1,12 @@
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirst\CodeFirst\bin\Debug\CodeFirst.exe.config
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirst\CodeFirst\obj\Debug\CodeFirst.csprojResolveAssemblyReference.cache
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirst\CodeFirst\bin\Debug\CodeFirst.exe
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirst\CodeFirst\bin\Debug\CodeFirst.pdb
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirst\CodeFirst\bin\Debug\EntityFramework.dll
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirst\CodeFirst\bin\Debug\EntityFramework.SqlServer.dll
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirst\CodeFirst\bin\Debug\EntityFramework.xml
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirst\CodeFirst\bin\Debug\EntityFramework.SqlServer.xml
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirst\CodeFirst\obj\Debug\CodeFirst.exe
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirst\CodeFirst\obj\Debug\CodeFirst.pdb
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirst\CodeFirst\obj\Debug\CodeFirst.Migrations.InitialModel.resources
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirst\CodeFirst\obj\Debug\CodeFirst.csproj.GenerateResource.Cache
