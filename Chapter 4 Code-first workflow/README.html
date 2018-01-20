@@ -534,3 +534,42 @@ Reverting explicit migration: 201801201636594_DeleteCategoryColumnFromCoursesTab
 </pre>
 After we make a change we go to the latest version again by running update-database.
 </p>
+
+<h4>Seeding database</h4>
+
+<p>To add data you want in the database add an 
+empty migration and write SQL  method to populate it with data.</p>
+
+<p>When we enable-migrations visual studio automatically creates a Configuration.cs.
+We can use this method for dummy data to our database.
+
+<pre>
+  protected override void Seed(CodeFirstExistingDatabase.PlutoContext context)
+        {
+            context.Authors.AddOrUpdate(a => a.Name,
+                new Author
+                {
+                    Name = "Author 1",
+                    Courses = new Collection<Course>()
+                    {
+                        new Course() {Name = "Course for author 1",Description = "Description" }
+                    }
+                }
+
+                );
+        }
+
+
+
+</pre>
+We update the database and check the message we get
+<pre>
+PM> update-database
+Specify the '-Verbose' flag to view the SQL statements being applied to the target database.
+No pending explicit migrations.
+Running Seed method.
+
+</pre>
+We see we have the data in our database.
+<img src="seed_data.jpg">
+</p>
