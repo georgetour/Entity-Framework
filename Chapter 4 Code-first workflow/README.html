@@ -185,7 +185,7 @@ PM> update-database
 <li>Create the class</li>
 <li><strong>Make the class discoverable by adding it to our DbContext</strong><br>
 <pre>
-public virtual DbSet<Category> Categories { get; set; }
+public virtual DbSet&lt;Category&gt; Categories { get; set; }
 </pre>
 If the migration exists use -Force
 </li>
@@ -218,7 +218,7 @@ If the migration exists use -Force
 <strong>To clean package manager console type cls</strong>
 </p>
 
-<h4>Adding property to class</h4>
+<h4>Adding/changing property to class</h4>
 
 <p>You go to the class you want to add the new property and then you create a new migration.
   You can see the changes in the migration.
@@ -244,4 +244,293 @@ Finally again you update-database
 <pre>
 PM> update-database
 </pre>
+</p>
+
+<p>If you add a <strong>DateTime</strong> property it must allow null. Since C# Datetime is a struct
+  and can't be nullable to make itnullable you add ?</p>
+
+<pre>
+public DateTime? Datepublished { get; set; }
+</pre>
+
+<h4>Changing safely a name for a column if property name changed</h4>
+
+<p>If you want to change a property you press F2 while you have chosen the name of it and then apply.
+Then add-migration MigrationName. Finally again you update-database.
+ </p>
+ <p>
+<strong>BE CAREFULL! The below code will drop the table and create
+     new string one and also have a nullable value which doesn't make sense to have a nullable title.
+     So whatever data we have are going to be lost.
+</strong>
+</p>
+<pre>
+  public override void Up()
+  {
+      AddColumn("dbo.Courses", "Name", c => c.String());
+      DropColumn("dbo.Courses", "Title");
+  }
+</pre>
+
+<h5>Override conventions</h5>
+<p>Make nullable false :</p>
+
+<pre>
+  public override void Up()
+  {
+      AddColumn("dbo.Courses", "Name", c => c.String(nullable:false));
+      DropColumn("dbo.Courses", "Title");
+  }
+</pre>
+
+<h5>Rename column method</h5>
+<p>
+  The first argument is the table,second old name,
+  third new name,forth argument optional.</p>
+
+<pre>
+  public override void Up()
+  {
+      RenameColumn("dbo.Courses","Title","Name")
+  }
+</pre>
+
+<h5>SQL()</h5>
+<p>After we add this name column we can populated it with
+the data we have.
+</p>
+<pre>
+  public override void Up()
+  {
+      AddColumn("dbo.Courses", "Name", c => c.String(nullable:false));
+      SQL("UPDATE Courses SET Name = Title");
+      DropColumn("dbo.Courses", "Title");
+  }
+</pre>
+
+<h5>Down()</h5>
+<p><strong>Always</strong> make the reverse to Down method also if you need to
+  Downgrade your database and not only make changes to Up().
+</p>
+<pre>
+  public override void Down()
+  {
+      AddColumn("dbo.Courses", "Title", c => c.String(nullable:false));
+      SQL("UPDATE Courses SET Title = Name");
+      DropColumn("dbo.Courses", "Name");
+  }
+</pre>
+
+<h5>Delete a column</h5>
+
+<p>First we delete the property from the class.
+  Then we add the migration and update database. Here how the migration wii look :
+</p>
+
+<pre>
+namespace CodeFirstExistingDatabase.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+
+    public partial class DeleteDatePublishedColumnFromCoursesTable : DbMigration
+    {
+        public override void Up()
+        {
+            DropColumn("dbo.Courses", "Datepublished");
+        }
+
+        public override void Down()
+        {
+            AddColumn("dbo.Courses", "Datepublished", c => c.DateTime());
+        }
+    }
+}
+</pre>
+
+<h4>Delete an existing class</h4>
+
+<p>Let's suppoe we will delete the Category class.
+<pre>
+    namespace CodeFirstExistingDatabase
+    {
+        using System;
+        using System.Collections.Generic;
+        using System.ComponentModel.DataAnnotations;
+        using System.ComponentModel.DataAnnotations.Schema;
+        using System.Data.Entity.Spatial;
+
+        [Table("Courses")]
+        public partial class Course
+        {
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+            public Course()
+            {
+                Tags = new HashSet<Tag>();
+            }
+
+            public int Id { get; set; }
+
+            public string Name { get; set; }
+
+            public string Description { get; set; }
+
+
+            public Category Category { get; set; }
+
+            public int Level { get; set; }
+
+            public float FullPrice { get; set; }
+
+            public int? Author_Id { get; set; }
+
+            public virtual Author Author { get; set; }
+
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+            public virtual ICollection<Tag> Tags { get; set; }
+        }
+    }
+</pre>
+
+<ol>
+  <li>First we delete the property from the Course class</li>
+  <li>Then we add the migration which will look like this
+<pre>
+  public partial class DeleteCategoryColumnFromCoursesTable : DbMigration
+  {
+      public override void Up()
+      {
+          DropForeignKey("dbo.Courses", "Category_Id", "dbo.Categories");
+          DropIndex("dbo.Courses", new[] { "Category_Id" });
+          DropColumn("dbo.Courses", "Category_Id");
+      }
+
+      public override void Down()
+      {
+          AddColumn("dbo.Courses", "Category_Id", c => c.Int());
+          CreateIndex("dbo.Courses", "Category_Id");
+          AddForeignKey("dbo.Courses", "Category_Id", "dbo.Categories", "Id");
+      }
+  }
+
+</pre>
+
+  </li>
+  <li>Update the database</li>
+  <li>Delete the category class itself <img src="delete_class.jpg"></li>
+  <li>Remove the class from dbcontext also <img src="remove_class_from_dbcontext.jpg"></li>
+  <li>Another Migration
+<pre>
+PM> add-migration DeleteCategoryTable
+</pre>
+  </li>
+
+</ol>
+
+</p>
+
+<h5>Keeping data from deleted table for historical reasons or something similar</h5>
+
+<ol>
+  <li>Create the underlined Categories Table by raw SQL
+<pre>SQL("CREATE TABLE...")
+
+</pre>
+
+
+  </li>
+  <li>Or use a helper method which you can borrow the code from Downgrade method. So we create the table
+    insert the data we have and then drop the main table. Again take a look at Down method.
+
+<pre>
+namespace CodeFirstExistingDatabase.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class DeleteCategoryTable : DbMigration
+    {
+        public override void Up()
+        {
+            CreateTable(
+                "dbo._Categories",
+                c => new
+                {
+                    Id = c.Int(nullable: false, identity: true),
+                    Name = c.String(),
+                })
+                .PrimaryKey(t => t.Id);
+            Sql("INSERT INTO _Categories (Name) SELECT Name FROM Categories ");
+            DropTable("dbo.Categories");
+        }
+        
+        public override void Down()
+        {
+            CreateTable(
+                "dbo.Categories",
+                c => new
+                {
+                    Id = c.Int(nullable: false, identity: true),
+                    Name = c.String(),
+                })
+                .PrimaryKey(t => t.Id);
+            Sql("INSERT INTO Categories (Name) SELECT Name FROM _Categories ");
+            DropTable("dbo._Categories");
+        }
+    }
+}
+
+</pre>
+  </li>
+  <li>Run the migration and see we have deleted the table Categories and kept the data
+    in underlined table.
+   <img src="deleted_table.jpg"></li>
+</ol>
+
+<h4>Recovering from mistakes</h4>
+
+<p>If we have made a migration that we didn't have to do we must create another migration to fix it. Don't delete
+the existing migration.
+</p>
+
+<h4>Downgragin a Database</h4>
+<h5>Option 1 Using a Blank Database</h5>
+
+<ol>
+  <li>Checkout the older version</li>
+  <li>Change the db name in the connection string</li>
+  <li>Update database</li>
+
+
+</ol>
+
+<h5>Option 2 Using an Existing Database</h5>
+
+<p>Imagine we had some migrations from beginning and we want to return to version 2 to fix something. The 
+  last migration for v2 is Migration F.
+ start -> Migration A, Migration B, Migration C, v1-> Migration D -> Migration E, Migration F, v2 -> Migration G -> Migration H now
+</p>
+
+<p>We must tell entity framework to go where we want
+  <pre>
+    pm>Update-Database -TargetMigration:F
+  </pre>
+Now entity framework will run the Down methods to reverse what we have done and go where we want. 
+Imagine that we want to go to v2 which was in the picture.
+<img src="downgrade_migration.jpg">
+</p>
+
+<p>We can see the migration history also at Management Studio
+  <img src="migrations_management_studio.jpg"> 
+</p>
+
+<p>We specify the target migration and entity framework reverts: 
+<pre>
+PM> update-database -TargetMigration:DeleteDatePublishedColumnFromCoursesTable
+Specify the '-Verbose' flag to view the SQL statements being applied to the target database.
+Reverting migrations: [201801201647299_DeleteCategoryTable, 201801201636594_DeleteCategoryColumnFromCoursesTable].
+Reverting explicit migration: 201801201647299_DeleteCategoryTable.
+Reverting explicit migration: 201801201636594_DeleteCategoryColumnFromCoursesTable.
+</pre>
+After we make a change we go to the latest version again by running update-database.
 </p>

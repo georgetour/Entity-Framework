@@ -16,3 +16,8 @@ C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirstExis
 C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirstExistingDatabase\CodeFirstExistingDatabase\obj\Debug\CodeFirstExistingDatabase.Migrations.AddCategoriesData.resources
 C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirstExistingDatabase\CodeFirstExistingDatabase\obj\Debug\CodeFirstExistingDatabase.Migrations.AddDataToCategories.resources
 C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirstExistingDatabase\CodeFirstExistingDatabase\obj\Debug\CodeFirstExistingDatabase.Migrations.AddedCategoryToCoursesTable.resources
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirstExistingDatabase\CodeFirstExistingDatabase\obj\Debug\CodeFirstExistingDatabase.Migrations.AddDatePostPublishedToCoursesTable.resources
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirstExistingDatabase\CodeFirstExistingDatabase\obj\Debug\CodeFirstExistingDatabase.Migrations.RenameTitleToNameInCoursesTable.resources
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirstExistingDatabase\CodeFirstExistingDatabase\obj\Debug\CodeFirstExistingDatabase.Migrations.DeleteDatePublishedColumnFromCoursesTable.resources
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirstExistingDatabase\CodeFirstExistingDatabase\obj\Debug\CodeFirstExistingDatabase.Migrations.DeleteCategoryColumnFromCoursesTable.resources
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\CodeFirstExistingDatabase\CodeFirstExistingDatabase\obj\Debug\CodeFirstExistingDatabase.Migrations.DeleteCategoryTable.resources
