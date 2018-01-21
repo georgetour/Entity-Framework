@@ -1,6 +1,8 @@
 
 <h1>Code-First workflow new database</h1>
 
+<a href="https://msdn.microsoft.com/en-us/library/jj193542(v=vs.113).aspx" target=_blank>https://msdn.microsoft.com/en-us/library/jj193542(v=vs.113).aspx</a>
+
 <h2>Create shortcuts in Visual Studio</h2>
 
 <p>We can easily create shortcut in Visual Studio by going to Tools -> Options. We search for what we want and by pressing the shortcut as shown
@@ -26,7 +28,7 @@ Here we are gonna have a some Db sets. A Db set is a collection of objects that 
 </p>
 
 <pre>
-public DbSet<Course> Courses { get; set; }
+public virtual DbSet<Course> Courses { get; set; }
 </pre>
 
 <h2>3. Specify the connection string</h2>
@@ -573,3 +575,17 @@ Running Seed method.
 We see we have the data in our database.
 <img src="seed_data.jpg">
 </p>
+
+<h4>Get script for all migrations from command package</h4>
+
+<pre>
+PM> update-database -Script - SourceMigration:0
+
+</pre>
+
+<p>In a real world scenario we might need to change the range of migrations included in the SQL script.</p>
+
+<pre>
+PM> update-database -Script - SourceMigration:Migr1 -TargetMigration:Migr2
+
+</pre>

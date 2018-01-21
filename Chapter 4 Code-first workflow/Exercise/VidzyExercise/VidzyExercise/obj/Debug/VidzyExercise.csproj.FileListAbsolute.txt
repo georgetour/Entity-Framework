@@ -1,0 +1,15 @@
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\Exercise\VidzyExercise\VidzyExercise\bin\Debug\VidzyExercise.exe.config
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\Exercise\VidzyExercise\VidzyExercise\bin\Debug\VidzyExercise.exe
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\Exercise\VidzyExercise\VidzyExercise\bin\Debug\VidzyExercise.pdb
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\Exercise\VidzyExercise\VidzyExercise\bin\Debug\EntityFramework.dll
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\Exercise\VidzyExercise\VidzyExercise\bin\Debug\EntityFramework.SqlServer.dll
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\Exercise\VidzyExercise\VidzyExercise\bin\Debug\EntityFramework.xml
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\Exercise\VidzyExercise\VidzyExercise\bin\Debug\EntityFramework.SqlServer.xml
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\Exercise\VidzyExercise\VidzyExercise\obj\Debug\VidzyExercise.csprojResolveAssemblyReference.cache
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\Exercise\VidzyExercise\VidzyExercise\obj\Debug\VidzyExercise.exe
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\Exercise\VidzyExercise\VidzyExercise\obj\Debug\VidzyExercise.pdb
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\Exercise\VidzyExercise\VidzyExercise\obj\Debug\VidzyExercise.Migrations.InitialModel.resources
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\Exercise\VidzyExercise\VidzyExercise\obj\Debug\VidzyExercise.csproj.GenerateResource.Cache
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\Exercise\VidzyExercise\VidzyExercise\obj\Debug\VidzyExercise.Migrations.AddGenresAndVideosData.resources
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\Exercise\VidzyExercise\VidzyExercise\obj\Debug\VidzyExercise.Migrations.GenreToVideosTable.resources
+C:\C-Sharp-Projects\Entity Framework\Chapter 4 Code-first workflow\Exercise\VidzyExercise\VidzyExercise\obj\Debug\VidzyExercise.Migrations.ClassificationToVideoTable.resources
