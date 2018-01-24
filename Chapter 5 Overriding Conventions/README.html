@@ -165,7 +165,7 @@ the entity we will use
 <pre>
 protected override void OnModelCreating(DbModelBuilder modelBuilder)
 {
-      modelBuilder.Entity<Course>()
+      modelBuilder.Entity&lt;Course>()
                   .Property(t => t.Description)
                   .IsRequired();
 
@@ -174,6 +174,209 @@ protected override void OnModelCreating(DbModelBuilder modelBuilder)
 <p>
 In the above we say at Course table make the property Description required.
 </p>
+
+<h2>Table Names</h2>
+<p>To override a table in the database we can call the method ToTable().If you wa
+to change the table schema for this table we pass an extra argument.</p>
+<pre>
+protected override void OnModelCreating(DbModelBuilder modelBuilder)
+{
+      modelBuilder.Entity&lt;Course>()
+                  .ToTable("tbl_Course","catalog");
+}
+</pre>
+
+<h2>Primary Keys</h2>
+<p>To configure primary keys we use the HasKey method which takes a lambda expression.</p>
+<pre>
+protected override void OnModelCreating(DbModelBuilder modelBuilder)
+{
+      modelBuilder.Entity&lt;Book>()
+                  .HasKey(t=>t.ISBN);
+}
+</pre>
+
+<h2>Composite Keys</h2>
+<p>Again we use the HasKey method. In the lamda expression we use an anonymous object
+and supply the name pf properties.
+</p>
+<pre>
+protected override void OnModelCreating(DbModelBuilder modelBuilder)
+{
+      modelBuilder.Entity&lt;Book>()
+                  .HasKey(t=>new{t.OrderId,t.OrderItemId });
+}
+</pre>
+
+<h2>Column Names</h2>
+<p>First we call the property method whic htakes a lambda expression
+  that defines the name of the property and then we chain another method
+  HasColumnName.
+</p>
+<pre>
+protected override void OnModelCreating(DbModelBuilder modelBuilder)
+{
+      modelBuilder.Entity&lt;Course>()
+                  .Property(t=>t.Name)
+                  .HasColumnName("sName");
+}
+</pre>
+<p>To change type of the column: </p>
+protected override void OnModelCreating(DbModelBuilder modelBuilder)
+{
+      modelBuilder.Entity&lt;Course>()
+                  .Property(t=>t.Name)
+                  .HasColumnType("varchar");
+}
+</pre>
+
+<h2>Column Orders</h2>
+<p>We also have a method to change columns order.
+</p>
+<pre>
+protected override void OnModelCreating(DbModelBuilder modelBuilder)
+{
+        modelBuilder.Entity&lt;Course>()
+                    .Property(t=>t.Name)
+                    .HasColumnOrder(2);
+}
+</pre>
+
+<h2>Database Generated</h2>
+<p>We also have a method for keys that we don't want to be assigned automatically like Primary Key in data
+  annotation.
+</p>
+<pre>
+protected override void OnModelCreating(DbModelBuilder modelBuilder)
+{
+        modelBuilder.Entity&lt;Course>()
+                    .Property(t=>t.ISBN)
+                    .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None)
+}
+</pre>
+
+<h2>Nulls</h2>
+<p>A method called IsRequired to not let nulls.
+</p>
+<pre>
+protected override void OnModelCreating(DbModelBuilder modelBuilder)
+{
+        modelBuilder.Entity&lt;Course>()
+                    .Property(t=>t.ISBN)
+                    .IsRequired();
+}
+</pre>
+
+<h2>Lenth of Strings</h2>
+<p>A method called HasMaxLength.
+</p>
+<pre>
+protected override void OnModelCreating(DbModelBuilder modelBuilder)
+{
+        modelBuilder.Entity&lt;Course>()
+                    .Property(t=>t.ISBN)
+                    .HasMaxLength(255);
+}
+</pre>
+
+<p>Set type to max:</p>
+<pre>
+protected override void OnModelCreating(DbModelBuilder modelBuilder)
+{
+        modelBuilder.Entity&lt;Course>()
+                    .Property(t=>t.ISBN)
+                    .IsMaxLength();
+}
+</pre>
+
+<h2>Relationships</h2>
+<p>This where Fluent API shines over data annotations.From type 1 to Type 2.</p>
+
+<ol>
+<li>HasMany - If object has many relations to object 2</li>
+<li>HasRequired - if object 1 has only one object of type 2</li>
+<li>HasOptional - if object 1 one has 0 or 1 objects of type 2</li>
+</ol>
+
+<p>Reverse direction.From type 2 to Type 1.</p>
+
+<ol>
+<li>WithMany - If object 2 has many relations to object 1</li>
+<li>WithRequired - if object 2 has only one object of type 1</li>
+<li>HasOptional - if object 2 one has 0 or 1 objects of type 1</li>
+</ol>
+
+<p>Examples : </p>
+<ol>
+<li>One-To-many - Author -> Book(An author can have many books)
+From left to right we will have :
+<pre>
+modelBuilder.Entity&lt;Author>()
+            .HasMany(a => Books)
+</pre>
+Then we need the reverse order which represents that Books must have an author :
+<pre>
+modelBuilder.Entity&lt;Author>()
+            .HasMany(a => Books)
+            .WithRequired(c=> c.Author)
+</pre>
+Also we can optionally specify a foreign key :
+<pre>
+modelBuilder.Entity&lt;Author>()
+            .HasMany(a => Books)
+            .WithRequired(c=> c.Author)
+            .HasForeignKey(c=>c.AuthorId);
+</pre>
+If we change the properties in the Books class since we use lamda expressions
+they will be automatically be updated in here.
+</li>
+<li>Many-to-many - Customers->Products (Each customer can purchase many
+  products, and each of those products can be purchased
+  by many different customers)
+<pre>
+modelBuilder.Entity&lt;Customer>()
+            .HasMany(c => c.Orders)
+            .WithMany(p=> p.Customers)
+            .Map(m=>m.ToTable("CustomersOrders"))
+</pre>
+You need to write this code only if you need to supply additional information
+for this many to many relationship. If we had name of table that looked
+strange we could override it.
+</li>
+<li>one-to-zero/one - Course -> Caption(a course can optionally have
+a caption but a caption can only belong to one course)
+<pre>
+modelBuilder.Entity&lt;Course>()
+            .HasOptional(c=>c.Caption)
+            .WithRequired(c => c.Course);
+</pre>
+<strong>So in general we start with the Has method and we continue with
+  the With method.
+ </strong>
+</li>
+
+<li>One-to-one - Course->Cover 
+  (A Course has one cover and a cover belongs to one course)In theis example Course is
+  the parent and Cover is the child. In enity framewrok are called Principal and Dependent.
+<pre>
+modelBuilder.Entity&lt;Course>()
+            .HasRequired(c => c.Cover)
+            .WithRequiredPrincipal(c => c.Course);
+</pre>
+When we have one-to-one relationship we must use With method to let entity framework know who is the parent
+and who is the child. And reverse :
+
+<pre>
+modelBuilder.Entity&lt;Course>()
+            .HasRequired(c => c.Course)
+            .WithRequiredDependent(c => c.Cover);
+</pre>
+</li>
+
+
+</ol>
+
+
 <h3>What to use?</h3>
 <p>Database annnotations is simpler but more limited. Fluent API is stronger and you can do
 more stuff with it. Also Fluent API is more cleaner since it doesn;t pollutes
