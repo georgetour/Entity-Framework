@@ -171,7 +171,7 @@ If you run the migration with an empty database it going to sync with this model
 If we have already the database we have to use a <strong>switch</strong>
 which is going to tell to entity framework that we all have these in our database so
 <pre>
- PM> add-migration InitialModel -IgnoreChnages - Force
+ PM> add-migration InitialModel -IgnoreChanges -Force
 </pre>
 
 You can only run one migration at a time.
@@ -179,6 +179,11 @@ You can only run one migration at a time.
 PM> update-database
 </pre>
 </p>
+<h3>3. Delete a Migration</h3>
+
+<p>To delete a migration right click at the class created at
+  migrations in solution explorer and delete.
+  <strong>This applies only if you haven't update the database.</strong></p>
 
 <h4>ALWAYS MAKE SMALL CHANGES TO MIGRATIONS</h4>
 <h4>Adding a new class</h4>
@@ -249,7 +254,7 @@ PM> update-database
 </p>
 
 <p>If you add a <strong>DateTime</strong> property it must allow null. Since C# Datetime is a struct
-  and can't be nullable to make itnullable you add ?</p>
+  and can't be nullable to make it nullable you add ?</p>
 
 <pre>
 public DateTime? Datepublished { get; set; }
@@ -449,7 +454,7 @@ namespace CodeFirstExistingDatabase.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class DeleteCategoryTable : DbMigration
     {
         public override void Up()
@@ -465,7 +470,7 @@ namespace CodeFirstExistingDatabase.Migrations
             Sql("INSERT INTO _Categories (Name) SELECT Name FROM Categories ");
             DropTable("dbo.Categories");
         }
-        
+
         public override void Down()
         {
             CreateTable(
@@ -489,7 +494,7 @@ namespace CodeFirstExistingDatabase.Migrations
    <img src="deleted_table.jpg"></li>
 </ol>
 
-<h4>Recovering from mistakes</h4>
+<h3>Recovering from mistakes</h3>
 
 <p>If we have made a migration that we didn't have to do we must create another migration to fix it. Don't delete
 the existing migration.
@@ -508,25 +513,25 @@ the existing migration.
 
 <h5>Option 2 Using an Existing Database</h5>
 
-<p>Imagine we had some migrations from beginning and we want to return to version 2 to fix something. The 
+<p>Imagine we had some migrations from beginning and we want to return to version 2 to fix something. The
   last migration for v2 is Migration F.
  start -> Migration A, Migration B, Migration C, v1-> Migration D -> Migration E, Migration F, v2 -> Migration G -> Migration H now
 </p>
 
 <p>We must tell entity framework to go where we want
-  <pre>
+<pre>
     pm>Update-Database -TargetMigration:F
-  </pre>
-Now entity framework will run the Down methods to reverse what we have done and go where we want. 
+</pre>
+Now entity framework will run the Down methods to reverse what we have done and go where we want.
 Imagine that we want to go to v2 which was in the picture.
 <img src="downgrade_migration.jpg">
 </p>
 
 <p>We can see the migration history also at Management Studio
-  <img src="migrations_management_studio.jpg"> 
+  <img src="migrations_management_studio.jpg">
 </p>
 
-<p>We specify the target migration and entity framework reverts: 
+<p>We specify the target migration and entity framework reverts:
 <pre>
 PM> update-database -TargetMigration:DeleteDatePublishedColumnFromCoursesTable
 Specify the '-Verbose' flag to view the SQL statements being applied to the target database.
@@ -539,7 +544,7 @@ After we make a change we go to the latest version again by running update-datab
 
 <h4>Seeding database</h4>
 
-<p>To add data you want in the database add an 
+<p>To add data you want in the database add an
 empty migration and write SQL  method to populate it with data.</p>
 
 <p>When we enable-migrations visual studio automatically creates a Configuration.cs.

@@ -1,0 +1,14 @@
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\DataAnnotations\DataAnnotations\bin\Debug\DataAnnotations.exe.config
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\DataAnnotations\DataAnnotations\bin\Debug\DataAnnotations.exe
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\DataAnnotations\DataAnnotations\bin\Debug\DataAnnotations.pdb
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\DataAnnotations\DataAnnotations\bin\Debug\EntityFramework.dll
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\DataAnnotations\DataAnnotations\bin\Debug\EntityFramework.SqlServer.dll
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\DataAnnotations\DataAnnotations\bin\Debug\EntityFramework.xml
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\DataAnnotations\DataAnnotations\bin\Debug\EntityFramework.SqlServer.xml
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\DataAnnotations\DataAnnotations\obj\Debug\DataAnnotations.csprojResolveAssemblyReference.cache
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\DataAnnotations\DataAnnotations\obj\Debug\DataAnnotations.exe
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\DataAnnotations\DataAnnotations\obj\Debug\DataAnnotations.pdb
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\DataAnnotations\DataAnnotations\obj\Debug\DataAnnotations.Migrations.InitialModel.resources
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\DataAnnotations\DataAnnotations\obj\Debug\DataAnnotations.csproj.GenerateResource.Cache
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\DataAnnotations\DataAnnotations\obj\Debug\DataAnnotations.Migrations.DeleteCategoriesTable.resources
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\DataAnnotations\DataAnnotations\obj\Debug\DataAnnotations.Migrations.CourseTableRequiredFieldsAndOrderChange.resources

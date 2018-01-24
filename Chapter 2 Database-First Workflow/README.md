@@ -30,6 +30,8 @@ Also note to have schema and data<img src="exporting_database_full.jpg">
 
 <p>We also have the option to backup the database and restore it somewhere else.
 <img src="backup-restore.jpg">
+If you want to restore it to a different name database you must choose the replace option
+<img src="replace_existing_database.jpg">
 </p>
 
 <h3>EDMX</h3>
