@@ -15,3 +15,4 @@ C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conve
 C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\FluentAPI\FluentAPI\obj\Debug\FluentAPI.Migrations.ConnectionBetweenTagAndCourses.resources
 C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\FluentAPI\FluentAPI\obj\Debug\FluentAPI.Migrations.Author_IdAndTagCoursesRenaming.resources
 C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\FluentAPI\FluentAPI\obj\Debug\FluentAPI.Migrations.CoverTable.resources
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\FluentAPI\FluentAPI\obj\Debug\FluentAPI.Migrations.ChangeCourse_Id_And_Tag_IdNames.resources

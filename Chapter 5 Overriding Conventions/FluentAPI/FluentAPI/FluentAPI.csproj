@@ -55,6 +55,7 @@
     <Compile Include="Author.cs" />
     <Compile Include="Course.cs" />
     <Compile Include="Cover.cs" />
+    <Compile Include="EntityConfigurations\CourseConfiguration.cs" />
     <Compile Include="FluentAPIContext.cs" />
     <Compile Include="Migrations\201801251214372_InitialModel.cs" />
     <Compile Include="Migrations\201801251214372_InitialModel.Designer.cs">
@@ -79,6 +80,10 @@
     <Compile Include="Migrations\201801251258206_CoverTable.cs" />
     <Compile Include="Migrations\201801251258206_CoverTable.Designer.cs">
       <DependentUpon>201801251258206_CoverTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801251313223_ChangeCourse_Id_And_Tag_IdNames.cs" />
+    <Compile Include="Migrations\201801251313223_ChangeCourse_Id_And_Tag_IdNames.Designer.cs">
+      <DependentUpon>201801251313223_ChangeCourse_Id_And_Tag_IdNames.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -107,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801251258206_CoverTable.resx">
       <DependentUpon>201801251258206_CoverTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801251313223_ChangeCourse_Id_And_Tag_IdNames.resx">
+      <DependentUpon>201801251313223_ChangeCourse_Id_And_Tag_IdNames.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

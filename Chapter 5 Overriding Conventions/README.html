@@ -350,7 +350,22 @@ modelBuilder.Entity&lt;Customer>()
 </pre>
 You need to write this code only if you need to supply additional information
 for this many to many relationship. If we had name of table that looked
-strange we could override it.
+strange we could override it.<br>
+<strong>Advanced Configurations</strong>
+<pre>
+  modelBuilder.Entity<Course>()
+                       .HasMany(c => c.Tags)
+                       .WithMany(c => c.Courses)
+                       .Map(m =>
+                       {
+                           m.ToTable("CourseTags");
+                           //Since we start from Course the left side is Course
+                           //The name of the left key is going to be CourseId
+                           m.MapLeftKey("CourseId");
+                           //The name of the left key is going to be TagId
+                           m.MapRightKey("TagId");
+                       });
+</pre>
 </li>
 <li>one-to-zero/one - Course -> Caption(a course can optionally have
 a caption but a caption can only belong to one course)
@@ -385,7 +400,150 @@ modelBuilder.Entity&lt;Course>()
 
 </ol>
 
+<h3>Organizing FluentApiConfigurations</h3>
 
+<p>Making many changes to your DbContext slowly it will make it big
+and hard to maintain. You will have to create a class for
+each congiguration class. In the below code all changes apply to Course class.
+
+</p>
+
+<pre>
+  protected override void OnModelCreating(DbModelBuilder modelBuilder)
+  {
+      modelBuilder.Entity<Course>()
+                 .Property(c => c.Name)
+                 .IsRequired()
+                 .HasMaxLength(255);
+
+      //Change max length for Description in Courses
+      modelBuilder.Entity<Course>()
+                  .Property(c => c.Description)
+                  .HasMaxLength(2000);
+
+      //Change Courses foreign key Author_Id to AuthorId
+      //And if an author has a course not let to be delete
+      modelBuilder.Entity<Course>()
+                  .HasRequired(c => c.Author)
+                  .WithMany(a => a.Courses)
+                  .HasForeignKey(c => c.AuthorId)
+                  .WillCascadeOnDelete(false);
+
+      //Change name of table TagCourses(was created in database automatically) to CoursesTag
+      modelBuilder.Entity<Course>()
+                  .HasMany(c => c.Tags)
+                  .WithMany(c => c.Courses)
+                  .Map(m =>
+                  {
+                      m.ToTable("CourseTags");
+                      //Since we start from Course the left side is Course
+                      //The name of the left key is going to be CourseId
+                      m.MapLeftKey("CourseId");
+                      //The name of the left key is going to be TagId
+                      m.MapRightKey("TagId");
+                  });
+
+      //New table cover and relationship with Course
+      modelBuilder.Entity<Course>()
+                  .HasRequired(c => c.Cover)
+                  .WithRequiredPrincipal(c => c.Course);
+
+
+      base.OnModelCreating(modelBuilder);
+  }
+
+
+</pre>
+<p>You will have to create a new folder in your project and call it
+EntityConfigurations. We will create there a class NameOfEntityConfigurations. And the above will
+look like this
+ </p>
+
+<pre>
+  using System;
+  using System.Collections.Generic;
+  using System.Data.Entity.ModelConfiguration;
+  using System.Linq;
+  using System.Text;
+  using System.Threading.Tasks;
+
+  namespace FluentAPI.EntityConfigurations
+  {
+      public class CourseConfiguration : EntityTypeConfiguration<Course>
+      {
+          public CourseConfiguration()
+          {
+
+                         Property(c => c.Name)
+                         .IsRequired()
+                         .HasMaxLength(255);
+
+              //Change max length for Description in Courses
+
+                          Property(c => c.Description)
+                          .HasMaxLength(2000);
+
+              //Change Courses foreign key Author_Id to AuthorId
+              //And if an author has a course not let to be delete
+
+                          HasRequired(c => c.Author)
+                          .WithMany(a => a.Courses)
+                          .HasForeignKey(c => c.AuthorId)
+                          .WillCascadeOnDelete(false);
+
+              //Change name of table TagCourses(was created in database automatically) to CoursesTag
+
+                          HasMany(c => c.Tags)
+                          .WithMany(c => c.Courses)
+                          .Map(m =>
+                          {
+                              m.ToTable("CourseTags");
+                              //Since we start from Course the left side is Course
+                              //The name of the left key is going to be CourseId
+                              m.MapLeftKey("CourseId");
+                              //The name of the left key is going to be TagId
+                              m.MapRightKey("TagId");
+                          });
+
+              //New table cover and relationship with Course
+
+                          HasRequired(c => c.Cover)
+                          .WithRequiredPrincipal(c => c.Course);
+
+          }
+      }
+  }
+
+</pre>
+<p>How to organize these changes . Alhabetically and :</p>
+<ol>
+<li>Table overrides ex - ToTable("Bob")</li>
+<li>Primary keys ex - HasKey(c =>c.Id)</li>
+<li>Property configurations</li>
+<li>Relationships</li>
+</ol>
+
+<p>Finally we need to reference the configurtation class.</p>
+<pre>
+  using FluentAPI.EntityConfigurations;
+  using System.Data.Entity;
+
+  namespace FluentAPI
+  {
+      public class FluentAPIContext :DbContext
+      {
+          public virtual DbSet<Author> Authors { get; set; }
+          public virtual DbSet<Course> Courses { get; set; }
+          public virtual DbSet<Tag> Tags { get; set; }
+
+          protected override void OnModelCreating(DbModelBuilder modelBuilder)
+          {
+              modelBuilder.Configurations.Add(new CourseConfiguration());
+          }
+
+      }
+  }
+</pre>
 <h3>What to use?</h3>
 <p>Database annnotations is simpler but more limited. Fluent API is stronger and you can do
 more stuff with it. Also Fluent API is more cleaner since it doesn;t pollutes
