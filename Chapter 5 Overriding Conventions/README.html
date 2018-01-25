@@ -328,7 +328,16 @@ modelBuilder.Entity&lt;Author>()
             .HasForeignKey(c=>c.AuthorId);
 </pre>
 If we change the properties in the Books class since we use lamda expressions
-they will be automatically be updated in here.
+they will be automatically be updated in here. Also we can set cascade
+on delete to false which means if you have an author and this author
+have at least one book we shouldn't be able to dlete this author.
+<pre>
+modelBuilder.Entity&lt;Author>()
+            .HasMany(a => Books)
+            .WithRequired(c=> c.Author)
+            .HasForeignKey(c=>c.AuthorId)
+            .WillCascadeOnDelete(false);
+</pre>
 </li>
 <li>Many-to-many - Customers->Products (Each customer can purchase many
   products, and each of those products can be purchased
@@ -355,7 +364,7 @@ modelBuilder.Entity&lt;Course>()
  </strong>
 </li>
 
-<li>One-to-one - Course->Cover 
+<li>One-to-one - Course->Cover
   (A Course has one cover and a cover belongs to one course)In theis example Course is
   the parent and Cover is the child. In enity framewrok are called Principal and Dependent.
 <pre>

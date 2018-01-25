@@ -1,0 +1,17 @@
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\FluentAPI\FluentAPI\bin\Debug\FluentAPI.exe.config
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\FluentAPI\FluentAPI\bin\Debug\FluentAPI.exe
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\FluentAPI\FluentAPI\bin\Debug\FluentAPI.pdb
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\FluentAPI\FluentAPI\bin\Debug\EntityFramework.dll
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\FluentAPI\FluentAPI\bin\Debug\EntityFramework.SqlServer.dll
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\FluentAPI\FluentAPI\bin\Debug\EntityFramework.xml
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\FluentAPI\FluentAPI\bin\Debug\EntityFramework.SqlServer.xml
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\FluentAPI\FluentAPI\obj\Debug\FluentAPI.csprojResolveAssemblyReference.cache
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\FluentAPI\FluentAPI\obj\Debug\FluentAPI.exe
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\FluentAPI\FluentAPI\obj\Debug\FluentAPI.pdb
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\FluentAPI\FluentAPI\obj\Debug\FluentAPI.Migrations.InitialModel.resources
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\FluentAPI\FluentAPI\obj\Debug\FluentAPI.csproj.GenerateResource.Cache
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\FluentAPI\FluentAPI\obj\Debug\FluentAPI.Migrations.NameRequiredAndLengthForDescriptionNameCoursesTable.resources
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\FluentAPI\FluentAPI\obj\Debug\FluentAPI.Migrations.RemoveExtraIdFromCourses.resources
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\FluentAPI\FluentAPI\obj\Debug\FluentAPI.Migrations.ConnectionBetweenTagAndCourses.resources
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\FluentAPI\FluentAPI\obj\Debug\FluentAPI.Migrations.Author_IdAndTagCoursesRenaming.resources
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\FluentAPI\FluentAPI\obj\Debug\FluentAPI.Migrations.CoverTable.resources
