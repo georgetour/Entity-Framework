@@ -1,0 +1,15 @@
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\OverridingConventions\OverridingConventions\bin\Debug\OverridingConventions.exe.config
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\OverridingConventions\OverridingConventions\bin\Debug\OverridingConventions.exe
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\OverridingConventions\OverridingConventions\bin\Debug\OverridingConventions.pdb
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\OverridingConventions\OverridingConventions\bin\Debug\EntityFramework.dll
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\OverridingConventions\OverridingConventions\bin\Debug\EntityFramework.SqlServer.dll
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\OverridingConventions\OverridingConventions\bin\Debug\EntityFramework.xml
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\OverridingConventions\OverridingConventions\bin\Debug\EntityFramework.SqlServer.xml
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\OverridingConventions\OverridingConventions\obj\Debug\OverridingConventions.csprojResolveAssemblyReference.cache
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\OverridingConventions\OverridingConventions\obj\Debug\OverridingConventions.exe
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\OverridingConventions\OverridingConventions\obj\Debug\OverridingConventions.pdb
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\OverridingConventions\OverridingConventions\obj\Debug\OverridingConventions.Migrations.Starting.resources
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\OverridingConventions\OverridingConventions\obj\Debug\OverridingConventions.csproj.GenerateResource.Cache
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\OverridingConventions\OverridingConventions\obj\Debug\OverridingConventions.Migrations.VideoTableColumnsChanges.resources
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\OverridingConventions\OverridingConventions\obj\Debug\OverridingConventions.Migrations.GenreTableColumnNameRequiredAndMaxLength.resources
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 5 Overriding Conventions\OverridingConventions\OverridingConventions\obj\Debug\OverridingConventions.Migrations.TagColumnAndRelationBetweenTagsAndVideos.resources
