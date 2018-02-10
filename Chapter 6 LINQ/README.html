@@ -2,9 +2,9 @@
 <h1>LINQ</h1>
 
 <section>
-<h2>What is LINQ?</h2
+<h2>What is LINQ?</h2>
 <p>LINQ stands for Language Integrated Query. It was invented by microsoft so you can query objects.
-But also you can queries XML, any relational DBs and NoSQL DBs like mongodb. No matter what 
+But also you can queries XML, any relational DBs and NoSQL DBs like mongodb. No matter what
 the source is you will use the exact same code to write queries. With LINQ the queries will be automatically
 translated in the language that is supported by the data store.
 </p>
@@ -90,7 +90,7 @@ is a list of groups which eah group is an enum)</strong>
                 from c in context.Courses
                 group c by c.Level into g
                 select g;
-				
+
             foreach (var group in query5)
             {
                 Console.WriteLine(group.Key);
@@ -110,7 +110,7 @@ Console.WriteLine("{0} {1}",group.Key,group.Count());
 
 <li><strong>Joining ...Inner Join...Group Join...Cross Join...
 (With LINQ you don't have to use an Inner Join)</strong>
-<pre>	    //Inner join     
+<pre>	    //Inner join
 	    var query6 =
                 from c in context.Courses
                 select new { CourseName = c.Name, AuthorName = c.Author.Name };
@@ -120,7 +120,7 @@ Console.WriteLine("{0} {1}",group.Key,group.Count());
                 Console.WriteLine(course.CourseName);
                 Console.WriteLine(course.AuthorName);
             }
-			
+
 	    //Same as above if we don't have the relation in our entity model
             var query6 =
                 from c in context.Courses
@@ -132,7 +132,7 @@ Console.WriteLine("{0} {1}",group.Key,group.Count());
 <li><strong>...Group Join...
 It's used like left join(SELECT A.Name From Authors A LEFT JOIN Courses C ON A.AuthorID = C.AuthorID</strong>
 <pre>            //Group join
-            //How many courses each author has 
+            //How many courses each author has
             var query7 =
                 from a in context.Authors
                 join c in context.Courses on a.Id equals c.AuthorId into g
@@ -141,7 +141,7 @@ It's used like left join(SELECT A.Name From Authors A LEFT JOIN Courses C ON A.A
             foreach (var x in query7)
             {
                 Console.WriteLine("{0} {1}",x.AuthorName,x.Courses);
-                
+
             }
 </pre>
 
@@ -184,6 +184,194 @@ Also some queries can't be written with LINQ syntax so you have to use this appr
 </pre></li>
 </ol>
 
+
+
+</section>
+
+<section>
+  <h2>Extension Methods</h2>
+
+  <p>Wnenever we see a Func we can use a lambda expression.
+    <img src="Func_and_Lambda_Expression.jpg">
+  </p>
+
+  <h3>1. Restriction</h3>
+  <pre>            var context = new PlutoContext();
+
+            var coursesLevel1 = context.Courses.Where(c => c.Level == 1);
+
+            foreach (var result in coursesLevel1)
+            {
+                Console.WriteLine(result.Name);
+            }</pre>
+
+
+  <h3>2. Ordering</h3>
+
+  <p>We have OrderBy, OrderByDescending, OrderByAscending, ThenBy, ThenByDescending, ThenByAscending</p>
+
+  <pre>            var context = new PlutoContext();
+
+            var coursesLevel1 = context.Courses
+                .Where(c => c.Level == 1).OrderByDescending(c=> c.Name)
+                .ThenByDescending(c=> c.Level);
+
+            foreach (var result in coursesLevel1)
+            {
+                Console.WriteLine(result.Name);
+            }
+</pre>
+
+
+  <h3>3. Projection</h3>
+
+  <p>Since we have a navigation property ...Author... we don't need a join as you see below.</p>
+  
+
+  <pre>            var context = new PlutoContext();
+
+            var coursesLevel1 = context.Courses
+                .Where(c => c.Level == 1).OrderByDescending(c=> c.Name)
+                .ThenByDescending(c=> c.Level)
+                .Select(c=> new { CourseName =c.Name , AuthorName = c.Author.Name });
+
+            foreach (var result in coursesLevel1)
+            {
+                Console.WriteLine(result.CourseName);
+                Console.WriteLine(result.AuthorName);
+            }
+</pre>
+
+<p>If we use Select and target property that is a list we will end up with a list of list. So we will need a foreach inside foreach.</p>
+
+
+<pre>            //IQueryable is simply a list inside a list so we need a forach inside foreach
+            var coursesTags = context.Courses
+                .Where(c => c.Level == 1).OrderByDescending(c => c.Name)
+                .ThenByDescending(c => c.Level)
+                .Select(c => c.Tags );
+
+            foreach (var c in coursesTags)
+            {
+                foreach (var tag in c)
+                {
+                    Console.WriteLine(tag.Name);
+                }
+            }
+</pre>
+
+<pre> //To fix the above
+            var tags = context.Courses
+                .Where(c => c.Level == 1).OrderByDescending(c => c.Name)
+                .ThenByDescending(c => c.Level)
+                .SelectMany(c => c.Tags);
+            Console.WriteLine("*****Course Tags with SelectMany***** \n");
+            foreach (var t in tags)
+            {
+                
+                    Console.WriteLine(t.Name);
+                
+            }
+
+            Console.WriteLine();
+</pre>
+
+  <h3>4. Set Operators</h3>
+
+  <p>Return unique results with Distinct.</p>
+  
+
+  <pre>            var uniqueTags = context.Courses
+                .Where(c => c.Level == 1).OrderByDescending(c => c.Name)
+                .ThenByDescending(c => c.Level)
+                .SelectMany(c => c.Tags)
+                .Distinct();
+            Console.WriteLine("*****Unique Tags with SelectMany and Distinct ***** \n");
+            foreach (var t in uniqueTags)
+            {
+
+                Console.WriteLine(t.Name);
+
+            }
+            Console.WriteLine();
+</pre>
+
+  <h3>4. Grouping</h3>
+
+  <p>GroupBy is used when we want to split resulsts in groups. Each group has a property called key.</p>
+  
+
+  <pre>             var groups = context.Courses.GroupBy(c => c.Level);
+
+            Console.WriteLine("*****Grouping and GroupBy ***** \n");
+
+            foreach (var group in groups)
+            {
+                Console.WriteLine("Key " + group.Key);
+                foreach (var course in group)
+                {
+                    Console.WriteLine(course.Name);
+                }
+            }
+            Console.WriteLine();
+</pre>
+
+
+<h3>4. Joins</h3>
+
+  <ul>
+    <li>Inner Join(When there is no relationship between objects and we want to relate them). As shown in the image what 
+        property of the Course class we want to use in order to join it with authors.
+    </li>
+    <img src="inner_join.jpg">
+    <pre>            //Inner Join
+            //We are usingCourses with Authors with their Id and we get the course name and author name
+            var courses = context.Courses.Join(context.Authors, 
+                c => c.AuthorId, 
+                a => a.Id, 
+                (course, author) => new
+                {
+                    CourseName = course.Name,
+                    AuthorName = author.Name
+                });
+
+            Console.WriteLine("*****Inner Join ***** \n");
+
+            foreach (var course in courses)
+            {
+                Console.WriteLine("Course: "+ course.CourseName);
+                Console.WriteLine("Author: " +course.AuthorName); 
+            }
+            Console.WriteLine();</pre>
+    <li>Group Join(It's useful when in SQL we do a left join and then use count and Group By)</li>
+    <pre>            //All authors and count their courses with GroupJoin
+            var coursesForAuthors= context.Authors.GroupJoin(context.Courses, a => a.Id, c => c.AuthorId, (author, allCourses) => new
+            {
+                AuthorName = author.Name,
+                Courses = allCourses.Count()
+
+            });
+
+            Console.WriteLine("*****GroupJoin ***** \n");
+
+            foreach (var course in coursesForAuthors)
+            {
+                Console.WriteLine("{0} has {1} courses",course.AuthorName,course.Courses);
+            }
+            Console.WriteLine();</pre>
+    <li>Cross Join(or cartesian join)</li>
+  </ul>
+  
+
+  <pre>            //Cross Join
+            //Give all authors all courses
+            var allCoursesToAuthors = context.Authors.SelectMany(a => context.Courses, (author, course) => new
+            {
+
+                AuthorName = author.Name,
+                CourseName = course.Name
+            });
+</pre>
 
 
 </section>
