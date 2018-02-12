@@ -130,6 +130,71 @@ namespace ExtensionMethods
                 CourseName = course.Name
             });
 
+            //Partitioning
+
+            Console.WriteLine("*****Partitioning ***** \n");
+
+            var limitResults = context.Courses.OrderBy(c => c.Name).Skip(5).Take(10);
+
+            foreach (var item in limitResults)
+            {
+                Console.WriteLine(item.Name);
+            }
+            Console.WriteLine();
+
+
+            //Element Operators
+
+            Console.WriteLine("*****Element Operators ***** \n");
+            //First course that it's price is bigger than 20 
+            var firstCourse = context.Courses.OrderBy(c => c.Name).FirstOrDefault(c => c.FullPrice >10);
+
+            Console.WriteLine(firstCourse.Name);
+
+            var singleCourse = context.Courses.Single(c => c.Id == 1);
+
+            Console.WriteLine(singleCourse.Name);
+
+            Console.WriteLine();
+
+
+            //Quanitfying
+
+            Console.WriteLine("*****Qualifying ***** \n");
+
+            var expensiveCourses = context.Courses.All(c => c.FullPrice > 20);
+
+            Console.WriteLine(expensiveCourses);
+
+            var anyCoursesAbove30 = context.Courses.Any(c => c.FullPrice > 30);
+
+            Console.WriteLine(anyCoursesAbove30);
+
+            Console.WriteLine();
+
+
+            //Aggregating
+
+            Console.WriteLine("*****Aggregating ***** \n");
+
+            var countAllCourses = context.Courses.Count(c=>c.FullPrice >100);
+
+            Console.WriteLine("We have {0} total courses above 100$",countAllCourses);
+
+            Console.WriteLine();
+
+            var mostExpensiveCourse = context.Courses.Max(c=> c.FullPrice);
+
+            Console.WriteLine("Most expensive price "+mostExpensiveCourse);
+
+            var cheapestCourse = context.Courses.Min(c => c.FullPrice);
+
+            Console.WriteLine("Cheapest price "+ cheapestCourse);
+
+            var averageCoursePrice = context.Courses.Average(c => c.FullPrice);
+
+            Console.WriteLine("The average of all courses is " + averageCoursePrice);
+
 
 
         }

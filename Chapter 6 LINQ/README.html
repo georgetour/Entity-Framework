@@ -296,7 +296,7 @@ Also some queries can't be written with LINQ syntax so you have to use this appr
             Console.WriteLine();
 </pre>
 
-  <h3>4. Grouping</h3>
+  <h3>5. Grouping</h3>
 
   <p>GroupBy is used when we want to split resulsts in groups. Each group has a property called key.</p>
   
@@ -317,7 +317,7 @@ Also some queries can't be written with LINQ syntax so you have to use this appr
 </pre>
 
 
-<h3>4. Joins</h3>
+<h3>6. Joins</h3>
 
   <ul>
     <li>Inner Join(When there is no relationship between objects and we want to relate them). As shown in the image what 
@@ -372,6 +372,99 @@ Also some queries can't be written with LINQ syntax so you have to use this appr
                 CourseName = course.Name
             });
 </pre>
+
+  <h3>7. Partitioning</h3>
+
+  <p>It's useful when we want to return a page of records. So if we want to display courses skip first 5  and the size of each page is 10.
+  </p>
+  
+
+  <pre>var limitResults = context.Courses.OrderBy(c => c.Name).Skip(5).Take(10);
+
+            foreach (var item in limitResults)
+            {
+                Console.WriteLine(item.Name);
+            }
+</pre>
+
+<h3>8. Element Operators</h3>
+
+  <p>Return a single object or the first object in the list. By default they are shortened by primary key.
+    With <strong>First</strong> if this course is table or this course list is empty you will get an exception. So we use 
+    <strong>FirsrOrDefault</strong> and it's going to return null. Also we have Last or LastOrDefault
+  </p>
+  
+
+  <pre>            //First course that it's price is bigger than 20 
+            var firstCourse = context.Courses.OrderBy(c => c.Name).FirstOrDefault(c => c.FullPrice > 20);
+
+            Console.WriteLine(firstCourse.Name);
+
+            Console.WriteLine();
+
+            
+</pre>
+
+<p><strong>Last CAN'T  be used with SQL database but only when working with data. </strong>
+If you want to achieve that you short them in a descending way and then choose the first one.
+</p>
+
+<p>We have also have Single and SingleOrDefault which will return a singel .</p>
+
+
+<pre>            var singleCourse = context.Courses.Single(c => c.Id == 1);
+
+            Console.WriteLine(singleCourse.Name);</pre>
+
+
+<h3>9. Qualifying</h3>
+
+  <p><strong>All</strong> returns a boolean. We also have <strong>Any</strong> which asks if we have any courses 
+    that satisfy this criteria.
+    
+  </p>
+  
+
+  <pre>            var expensiveCourses = context.Courses.All(c => c.FullPrice > 20);
+
+            Console.WriteLine(expensiveCourses);
+
+            var anyCoursesAbove30 = context.Courses.Any(c => c.FullPrice > 30);
+
+            Console.WriteLine(anyCoursesAbove30);
+
+            
+</pre>
+
+<h3>10. Aggregating</h3>
+
+  <p><strong>Count</strong> just counts how many are in the database. <strong>Max</strong> finds the highest, <strong>Min</strong>finds the lowest, <strong>Average</strong> counts the avrage.
+    
+  </p>
+  
+
+  <pre>            var countAllCourses = context.Courses.Count(c=>c.FullPrice >100);
+
+            Console.WriteLine("We have {0} total courses above 100$",countAllCourses);
+
+            Console.WriteLine();
+
+            var mostExpensiveCourse = context.Courses.Max(c=> c.FullPrice);
+
+            Console.WriteLine("Most expensive price "+mostExpensiveCourse);
+
+            var cheapestCourse = context.Courses.Min(c => c.FullPrice);
+
+            Console.WriteLine("Cheapest price "+ cheapestCourse);
+
+            var averageCoursePrice = context.Courses.Average(c => c.FullPrice);
+
+            Console.WriteLine("The average of all courses is " + averageCoursePrice);
+
+
+            
+</pre>
+
 
 
 </section>
