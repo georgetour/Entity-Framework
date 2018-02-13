@@ -468,3 +468,99 @@ If you want to achieve that you short them in a descending way and then choose t
 
 
 </section>
+
+<section>
+    
+<h2>Deferred Execution</h2>
+
+<p>To see what queries we run you can check SQL server profiler as shown in Chapter 3. Queries are not executed at the time you create them but when one fo these situations happens.</p>
+<h4>Query executed when</h4>
+<ul>
+    <li>Iterating over query variable</li>
+    <li>Calling ToList, ToArray, ToDictionary</li>
+    <li>Calling First, Last, Single, Count, Max, Min, Average</li>
+
+</ul>
+
+<p>So this is what we call deferred execution. Queries are not executed immediately but only when needed.
+One <strong>main advantage</strong> is that deferred execution enables queries to be extended.
+</p>
+
+<pre>            var context = new PlutoContext();
+
+            var courses = context.Courses;
+
+            var filtered = courses.Where(c => c.Level == 1);
+
+            var sorted = filtered.OrderBy(c => c.Name);
+
+            foreach (var course in sorted)
+            {
+                Console.WriteLine(course.Name);
+            }</pre>
+
+<p>It <strong>isn't recommended</strong> to store different queries in different values but we should chain the methods we want.</p>
+
+<p>There are times though that we need to execute a query because your queries cannot be translated to SQL. Check DeferredExecution project
+
+</p>
+
+<pre>
+            var allBeginnerCourses = context.Courses.Where(c => c.isBeginnerCourse == true);
+
+            //Throws invalid error exception
+            //This is because isBeginnerCourse is a custom property and LINQ doesn;t know how 
+            //to translate it to SQL
+            foreach (var course in allBeginnerCourses)
+            {
+                Console.WriteLine(course.Name);
+            }
+
+</pre>
+
+<p>To fix it we use <strong>immediate execution.</strong> This though has an impact in our application since we load all our courses from the database just to filter them in memory. In smaller applications it isn't noticeable.</p>
+<pre>            var allBeginnerCourses = context.Courses.ToList().Where(c => c.isBeginnerCourse == true);
+            Console.WriteLine();
+            Console.WriteLine("Immediate Execution");
+            foreach (var course in allBeginnerCourses)
+            {
+                Console.WriteLine(course.Name);
+            }
+</pre>
+</section>
+
+<section>
+    <h2>IQueryable</h2>
+    <p>IQueryable is an interface that derives from IEnuremable. Allows queries to be extended without being immediately executed. As we see in our project IQueryableExample since we stored it in an IQueryable the filter is part of the query.
+    With IQueryable all expressions will be translated to SQL code and run together as a single SQL query.
+
+        <pre>            var context = new PlutoContext();
+
+            IQueryable<Course> courses = context.Courses;
+
+            var filtered = courses.Where(c => c.Level == 1);
+
+            foreach (var course in filtered)
+            {
+                Console.WriteLine(course.Name);
+            }</pre>
+        <img src="iqueryable_explained.jpg">
+    </p>
+
+    <h3>IEnumerable</h3>
+    <p>IEnumerable is an interface that represents any object that can be enumerated. In simple terms 
+        it means that we can iterate over them using a for each block in C#.
+
+    </p>
+    <ol>
+        <li>string(we can have access to each character with a foreach)</li>
+        <li>array</li>
+        <li>list</li>
+        <li>dictionary</li>
+    </ol>
+
+    <p>If we use IEnumerable each expression will called and used immediately one by one so that makes the app heavier.</p>
+
+
+
+</section>

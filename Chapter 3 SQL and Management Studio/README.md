@@ -239,4 +239,8 @@ FROM OrderItems
 Then you choose which tables to add in your diagram.You save the diagram by clicking the blue diskette. To another table in the diagram right click at white space and select the table. You can arrange them more nicely by right clicking in white space Arrange Tables. We can print the diagram. You can hover in lines to see the relations resize tables size etc. By right clicking in table you can choose table view with more info about it.
 <img src="table_view.jpg">
 
-<h5>Use Sum</h5>
+<h3>SQL Server Profiler</h3>
+
+<p>To see what queries we have in the database we can check them in SQL Management Studio->Tools-> SQL Server Profiler accept the default since it doesn't really matter.
+<img src="sql_server_profiler_queries.jpg">
+</p>
