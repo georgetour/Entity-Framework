@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ExtensionMethods
+namespace DeferredExecution
 {
     public class Course
     {
@@ -26,5 +26,9 @@ namespace ExtensionMethods
         public virtual ICollection<Tag> Tags { get; set; }
 
         public Cover Cover { get; set; }
+
+        public bool isBeginnerCourse {
+            get { return Level == 1; }
+        }
     }
 }

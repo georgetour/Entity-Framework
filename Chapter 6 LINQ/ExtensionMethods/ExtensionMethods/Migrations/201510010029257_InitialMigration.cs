@@ -1,4 +1,4 @@
-namespace IQueryableExample.Migrations
+namespace ExtensionMethods.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

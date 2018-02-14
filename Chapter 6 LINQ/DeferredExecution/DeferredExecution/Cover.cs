@@ -1,4 +1,4 @@
-﻿namespace ExtensionMethods
+﻿namespace DeferredExecution
 {
     public class Cover
     {

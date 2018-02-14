@@ -1,4 +1,4 @@
-﻿namespace IQueryableExample
+﻿namespace ExtensionMethods
 {
     public class Cover
     {

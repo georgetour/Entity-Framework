@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ExtensionMethods
+namespace DeferredExecution
 {
     public class Tag
     {

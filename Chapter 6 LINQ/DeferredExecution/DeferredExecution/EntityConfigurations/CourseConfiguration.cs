@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity.ModelConfiguration;
 
-namespace ExtensionMethods.EntityConfigurations
+namespace DeferredExecution.EntityConfigurations
 {
     public class CourseConfiguration : EntityTypeConfiguration<Course>
     {

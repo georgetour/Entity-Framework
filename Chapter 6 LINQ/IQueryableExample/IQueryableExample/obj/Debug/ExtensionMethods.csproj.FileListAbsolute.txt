@@ -7,10 +7,9 @@ C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 6 LINQ\ExtensionMe
 C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 6 LINQ\ExtensionMethods\ExtensionMethods\bin\Debug\EntityFramework.xml
 C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 6 LINQ\ExtensionMethods\ExtensionMethods\bin\Debug\EntityFramework.SqlServer.xml
 C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 6 LINQ\ExtensionMethods\ExtensionMethods\obj\Debug\ExtensionMethods.csprojResolveAssemblyReference.cache
-C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 6 LINQ\ExtensionMethods\ExtensionMethods\obj\Debug\ExtensionMethods.Migrations.InitialMigration.resources
 C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 6 LINQ\ExtensionMethods\ExtensionMethods\obj\Debug\ExtensionMethods.csproj.GenerateResource.Cache
 C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 6 LINQ\ExtensionMethods\ExtensionMethods\bin\Debug\ExtensionMethods.pdb
-C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 6 LINQ\DeferredExecution\ExtensionMethods\bin\Debug\ExtensionMethods.exe.config
-C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 6 LINQ\DeferredExecution\ExtensionMethods\obj\Debug\ExtensionMethods.exe
-C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 6 LINQ\DeferredExecution\ExtensionMethods\obj\Debug\ExtensionMethods.pdb
-C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 6 LINQ\DeferredExecution\ExtensionMethods\bin\Debug\DeferredExecution.exe.config
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 6 LINQ\ExtensionMethods\ExtensionMethods\obj\Debug\DeferredExecution.Migrations.InitialMigration.resources
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 6 LINQ\ExtensionMethods\ExtensionMethods\bin\Debug\IQueryableExample.exe.config
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 6 LINQ\ExtensionMethods\ExtensionMethods\obj\Debug\IQueryableExample.exe
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 6 LINQ\ExtensionMethods\ExtensionMethods\obj\Debug\IQueryableExample.pdb

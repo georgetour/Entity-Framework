@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ExtensionMethods
+namespace IQueryableExample
 {
     public class Tag
     {

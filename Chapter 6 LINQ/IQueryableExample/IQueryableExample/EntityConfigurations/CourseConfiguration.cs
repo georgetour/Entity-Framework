@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity.ModelConfiguration;
 
-namespace ExtensionMethods.EntityConfigurations
+namespace IQueryableExample.EntityConfigurations
 {
     public class CourseConfiguration : EntityTypeConfiguration<Course>
     {

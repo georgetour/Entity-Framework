@@ -1,7 +1,7 @@
 using System.Data.Entity;
-using ExtensionMethods.EntityConfigurations;
+using DeferredExecution.EntityConfigurations;
 
-namespace ExtensionMethods
+namespace DeferredExecution
 {
     public class PlutoContext : DbContext
     {

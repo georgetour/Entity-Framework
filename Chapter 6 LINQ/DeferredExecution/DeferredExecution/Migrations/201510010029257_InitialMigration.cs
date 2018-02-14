@@ -1,4 +1,4 @@
-namespace ExtensionMethods.Migrations
+namespace DeferredExecution.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

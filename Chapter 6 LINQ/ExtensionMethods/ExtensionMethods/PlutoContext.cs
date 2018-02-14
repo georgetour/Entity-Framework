@@ -1,7 +1,7 @@
 using System.Data.Entity;
-using IQueryableExample.EntityConfigurations;
+using ExtensionMethods.EntityConfigurations;
 
-namespace IQueryableExample
+namespace ExtensionMethods
 {
     public class PlutoContext : DbContext
     {

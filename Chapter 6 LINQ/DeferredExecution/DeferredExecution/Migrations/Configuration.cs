@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace ExtensionMethods.Migrations
+namespace DeferredExecution.Migrations
 {
     using System.Data.Entity.Migrations;
 

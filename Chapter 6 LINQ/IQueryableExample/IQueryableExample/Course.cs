@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ExtensionMethods
+namespace IQueryableExample
 {
     public class Course
     {
@@ -26,5 +26,11 @@ namespace ExtensionMethods
         public virtual ICollection<Tag> Tags { get; set; }
 
         public Cover Cover { get; set; }
+
+        //Check if it s a beginner course
+        public bool isBeginnerCourse
+        {
+            get { return Level == 1; }
+        }
     }
 }
