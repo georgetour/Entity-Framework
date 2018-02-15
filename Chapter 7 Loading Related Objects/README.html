@@ -1,0 +1,130 @@
+
+<h1>Loading Related Objects</h1>
+
+<section>
+<h2>Lazy Loading</h2>
+
+<p>Any singleton methods like Single, SingleOrDefault, First, FirstOrDefault, Count, Max, Average cause an immediate query execution.  </p>
+
+<pre>            #region Lazy Loading
+            
+            //It creates a query in database immediately
+            //This course object has not its tags initialized
+            var course = context.Courses.Single(c => c.Id == 2);
+
+            //When we get in here and we access course.Tags entitty framework will send another query 
+            //for the tags for this course
+            foreach (var tag in course.Tags)
+            {
+                Console.WriteLine(tag.Name);
+            }
+            
+            #endregion</pre>
+
+<p>So related objects are not loaded immediately. They are loaded on demand when we access them.</p>
+<p>In our project in Course class we have a virtual property Tags. At runtime entity framework creates a new class 
+that derives from Course. It's called CourseProxy. It looks exactly like Course class but it has has some additional behavior.  </p>
+
+<pre>    public class Course
+    {
+        public Course()
+        {
+            Tags = new HashSet<Tag>();
+        }
+
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+
+        public int Level { get; set; }
+
+        public float FullPrice { get; set; }
+
+        public virtual Author Author { get; set; }
+
+        public int AuthorId { get; set; }
+
+        public virtual ICollection<Tag> Tags { get; set; }
+
+        public Cover Cover { get; set; }
+    }</pre>
+	
+	<p>As we see below in visual studio debug mode we see a the value of course is a proxy created by entity framework.
+	<img src="lazy_loading_proxy.jpg">
+	</p>
+	
+	<h3>Best Practices</h3>
+	<ul>
+		<li>Use when loading an object graph is costly(imagine we want to load a lot of objects when the application starts
+		and this is going to be costly which can cause a delay in your application)</li>
+		<li>Use in desktop applications</li>
+		<li><strong>Avoid in web applications</strong>(we get a request and in order for us to get a response we need to know what data exactly we have to return, if the user navigates to pages etc we will get another request so we won't have anything seated in memory)
+		</li>
+		<li>To disable lazy loading you either not use virtual or make lazy loading to false</li>
+		<pre>public PlutoContext():base("name=PlutoContext"){this.Configuration.LazyLoadingEnabled = false;}</pre>
+		
+	
+	</ul>
+</section>
+
+<section>
+<h2>N + 1 issue (technical interviews)</h2>
+
+<p>While lazy loading might good for some solutions to be optimized and be more responsive if it's used inappropriately it can lead to N + 1 problem. In order to get N entities and their related entities we'll end up with N + 1  queries.</p>
+
+<pre>            //We have one query here
+            var courses2 = context.Courses.ToList();
+
+            //Here though for Author.Name enity framework is going to run a seperate query to get the Author for
+            //tha course
+            //So we assume we have N courses we will get N + 1(which is the first query above)
+            foreach (var course in courses2)
+            {
+                Console.WriteLine("{0} by {1}", course.Name, course.Author.Name);
+            }
+
+            Console.WriteLine();</pre>
+<p>And if we see our SQL profiler we will see how many queries we will have.
+<img src="n+1_unecessary_queries.jpg">
+</p>
+</section>
+
+<section>
+<h2>Eager Loading</h2>
+<p>Eager Loading is the opposite of lazy loading. Instead of loading the related entities on demand we will load them 
+up front to prevent additional queries to the database.
+</p>
+<pre>            //Include has two overloads(one takes a string and the other a lambda expression)
+            //With this query entity framework will join the courses table with authors table
+            //to eager load all the courses and their authors
+            //Wrong practices
+            //var courses3 = context.Courses.Include("Author").ToList();
+
+            //Correct with lambda expression
+            var courses3 = context.Courses.Include(c => c.Author).ToList();
+
+            foreach (var course in courses3)
+            {
+                Console.WriteLine("{0} by {1}", course.Name, course.Author.Name);
+            }</pre>
+			<p>Unlike lazy loading we will not have so many queries to get courses and their authors.
+			<img src="eager_loading.jpg">
+			</p>
+
+			
+			<h3>Multiple Levels</h3>
+			<p>If we have single properties we just add chain them. If though we have a collection we have to use Select.</p>
+			<pre> //Multiple Levels
+            //Single properties
+            context.Courses.Include(CannotUnloadAppDomainException => CannotUnloadAppDomainException.Author.Address);
+			
+			//For collection properties
+			context.Courses.Include(a => a.Tags).Select(t => t.Moderator);
+			</pre>
+			<p>Similar to lazy loading eager loading can be good and bad.</p>
+			
+			<p>If we use many Includes the generated queries will get more and more complex. Also we will store many objects in memory that are not needed straight away. </p>
+
+</section>

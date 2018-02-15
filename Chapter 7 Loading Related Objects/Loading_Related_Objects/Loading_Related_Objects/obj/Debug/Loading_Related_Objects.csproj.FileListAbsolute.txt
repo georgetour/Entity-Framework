@@ -1,0 +1,12 @@
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 7 Loading Related Objects\Loading_Related_Objects\Loading_Related_Objects\bin\Debug\Loading_Related_Objects.exe.config
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 7 Loading Related Objects\Loading_Related_Objects\Loading_Related_Objects\bin\Debug\Loading_Related_Objects.exe
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 7 Loading Related Objects\Loading_Related_Objects\Loading_Related_Objects\bin\Debug\Loading_Related_Objects.pdb
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 7 Loading Related Objects\Loading_Related_Objects\Loading_Related_Objects\bin\Debug\EntityFramework.dll
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 7 Loading Related Objects\Loading_Related_Objects\Loading_Related_Objects\bin\Debug\EntityFramework.SqlServer.dll
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 7 Loading Related Objects\Loading_Related_Objects\Loading_Related_Objects\bin\Debug\EntityFramework.xml
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 7 Loading Related Objects\Loading_Related_Objects\Loading_Related_Objects\bin\Debug\EntityFramework.SqlServer.xml
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 7 Loading Related Objects\Loading_Related_Objects\Loading_Related_Objects\obj\Debug\Loading_Related_Objects.csprojResolveAssemblyReference.cache
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 7 Loading Related Objects\Loading_Related_Objects\Loading_Related_Objects\obj\Debug\Loading_Related_Objects.Migrations.InitialMigration.resources
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 7 Loading Related Objects\Loading_Related_Objects\Loading_Related_Objects\obj\Debug\Loading_Related_Objects.csproj.GenerateResource.Cache
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 7 Loading Related Objects\Loading_Related_Objects\Loading_Related_Objects\obj\Debug\Loading_Related_Objects.exe
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 7 Loading Related Objects\Loading_Related_Objects\Loading_Related_Objects\obj\Debug\Loading_Related_Objects.pdb
