@@ -77,6 +77,34 @@ namespace Loading_Related_Objects
             #endregion
 
 
+            #region Explicit Loading
+
+            Console.WriteLine("Explicit Loading");
+
+            //First query get an author with id 1
+            var author2 = context.Authors.Single(a => a.Id == 1);
+
+            //MSDN way
+            //You have to remember more of DbContext API
+            //This only works for single entries and NOT a list of objects
+            context.Entry(author2).Collection(a => a.Courses).Query().Where(c => c.FullPrice == 0).Load();
+
+            //Better way
+            context.Courses.Where(c => c.AuthorId == author2.Id && c.FullPrice == 49).Load();
+
+           
+            Console.WriteLine();
+
+            Console.WriteLine("Free Courses");
+            var authors2 = context.Authors.ToList();
+
+            //Select all authors ids
+            var authorIds= authors2.Select(a => a.Id);
+
+            
+            Console.WriteLine();
+
+            #endregion
 
         }
     }

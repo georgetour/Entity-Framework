@@ -128,3 +128,53 @@ up front to prevent additional queries to the database.
 			<p>If we use many Includes the generated queries will get more and more complex. Also we will store many objects in memory that are not needed straight away. </p>
 
 </section>
+
+
+<section>
+<h2>Explicit Loading</h2>
+<p>With Explicit Loading we tell entity framework exactly what should be loaded ahead of time. The differences between 
+Eager Loading and Explicit Loading is that Eager Loading will :
+
+<ul>
+<li>Use JOINs</li>
+<li>One round-trip</li>
+
+</ul>
+
+Explicit Loading :
+<ul>
+<li>Seperate Queries</li>
+<li>Multiple round-trips</li>
+
+</ul>
+</p>
+
+<p>Explicit loading have some benefits since instead of sending a big query to the database we will have multiple round trips.
+Another advantage is that you can apply filters to the related objects. 
+
+</p>
+
+<pre>            //First query get an author with id 1
+            var author = context.Authors.Single(a => a.Id == 1);
+
+            //MSDN way
+            //You have to remember more of DbContext API
+            //This only works for single entries and NOT a list of objects
+            context.Entry(author).Collection(a => a.Courses).Query().Where(c => c.FullPrice == 0).Load();
+
+            //Better way
+            context.Courses.Where(c => c.AuthorId == author.Id && c.FullPrice == 0).Load();
+
+
+</pre>
+<h4>IN Operator</h4>
+<pre>SELECT *FROM Courses WHERE AuthorID IN(1,2,3,4)</pre>
+
+<p>And the above in Entity</p>
+<pre>            var authors2 = context.Authors.ToList();
+
+            //Select all authors ids
+            var authorIds= authors2.Select(a => a.Id);
+
+            context.Courses.Where(c => authorIds.Contains(c.AuthorId) && c.FullPrice == 0);</pre>
+</section>
