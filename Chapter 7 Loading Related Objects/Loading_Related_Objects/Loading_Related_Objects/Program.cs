@@ -21,6 +21,7 @@ namespace Loading_Related_Objects
 
             //When we get in here and we access course.Tags entitty framework will send another query 
             //for the tags for this course
+            //****Don't forget that Tags are virtual****
             foreach (var tag in courses.Tags)
             {
                 Console.WriteLine(tag.Name);

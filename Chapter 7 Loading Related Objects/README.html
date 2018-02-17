@@ -14,6 +14,7 @@
 
             //When we get in here and we access course.Tags entitty framework will send another query 
             //for the tags for this course
+            //Don't forget that Tags are virtual
             foreach (var tag in course.Tags)
             {
                 Console.WriteLine(tag.Name);
@@ -72,6 +73,8 @@ that derives from Course. It's called CourseProxy. It looks exactly like Course 
 <section>
 <h2>N + 1 issue (technical interviews)</h2>
 
+<a href="https://stackoverflow.com/questions/97197/what-is-n1-select-query-issue">https://stackoverflow.com/questions/97197/what-is-n1-select-query-issue</a>
+
 <p>While lazy loading might good for some solutions to be optimized and be more responsive if it's used inappropriately it can lead to N + 1 problem. In order to get N entities and their related entities we'll end up with N + 1  queries.</p>
 
 <pre>            //We have one query here
@@ -109,7 +112,7 @@ up front to prevent additional queries to the database.
             {
                 Console.WriteLine("{0} by {1}", course.Name, course.Author.Name);
             }</pre>
-			<p>Unlike lazy loading we will not have so many queries to get courses and their authors.
+			<p>Unlike lazy loading we will not have so many queries to get courses and their authors and will use inner join.
 			<img src="eager_loading.jpg">
 			</p>
 
