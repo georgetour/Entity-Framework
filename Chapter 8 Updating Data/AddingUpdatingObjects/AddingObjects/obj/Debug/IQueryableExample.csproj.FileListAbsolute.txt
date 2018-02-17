@@ -1,0 +1,1 @@
+C:\C-Sharp-Projects\Entity Framework\Entity-Framework\Chapter 6 LINQ\IQueryableExample\IQueryableExample\bin\Debug\DeferredExecution.exe.config

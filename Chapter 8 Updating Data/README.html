@@ -1,0 +1,107 @@
+
+<h1>Updating Data</h1>
+
+<section>
+<h2>Change Tracker</h2>
+<p>Inside the context we have a component called Change Tracker that is responsible for keeping track of the state of objects.
+When we add a new object in context change tracker sees that and marks it as a new object with the state of added.
+When we modify one of the existing objects in the context again change tracker sees that and changes the state of that object to modify it. Finally when we remove an existing object Change Tracker sets its to deleted.
+None of these modifications are reflected in the database. They all are in the memory.
+When we call the Save method entity framework looks at the State of these objects and based on them it creates different queries to 
+update the database. When this happens Change Tracker sets the state of these objects to Unchanged.
+</p>
+
+
+</section>
+
+<section>
+<h2>Adding Objects</h2>
+<p>Inside the context we have a component called Change Tracker that is responsible for keeping track of the state of objects.
+When we add a new object in context change tracker sees that and marks it as a new object with the state of added.
+When we modify one of the existing objects in the context again change tracker sees that and changes the state of that object to modify it. Finally when we remove an existing object Change Tracker sets its to deleted.
+None of these modifications are reflected in the database. They all are in the memory.
+When we call the Save method entity framework looks at the State of these objects and based on them it creates different queries to 
+update the database. When this happens Change Tracker sets the state of these objects to Unchanged.
+</p>
+
+<p>By running the below code we will see that a new Author was added with number 6 as shown in image below. The reason is we instantiating a new author.
+
+</p>
+<pre>
+var course = new Course
+            {
+                Name = "New Course",
+                Description = "New Descr",
+                FullPrice = 20.50f,
+                Level = 1,
+                Author = new Author { Id = 1, Name = "Mosh Hamedani" }
+            };
+
+            context.Courses.Add(course);
+
+            context.SaveChanges();
+</pre>
+<img src="wrong_data_inserted.jpg">
+
+<p> To fix the above we have two ways : </p>
+<h3>Bring author object into our db context so entity framework will know tha exists in database. This approach works in WPF applications. </h3>
+<pre>
+            //For WPF apps
+            var authors = context.Authors.ToList();
+
+            var author = context.Authors.Single(a => a.Id == 1);
+
+            var course = new Course
+            {
+                Name = "New Course 2",
+                Description = "New Description 2",
+                FullPrice = 20.50f,
+                Level = 1,
+                Author = author
+            };
+
+            context.Courses.Add(course);
+
+            context.SaveChanges();
+
+
+</pre>
+<p>With first way if if the author object is not in any context entity framework is gonig to run a query in the database
+and this will have a slight impact on the performance of our application. Use this apporach when we have the object in memory.
+
+<h3>Second way is to use the Author Id foreign key property. This approach works in web applications(MVC projects).</h3>
+<pre>            //For Web apps
+
+            var course2 = new Course
+            {
+                Name = "New Course 3",
+                Description = "New Description 3",
+                FullPrice = 20.50f,
+                Level = 1,
+                AuthorId = 1
+            };
+
+            context.Courses.Add(course2);
+
+            context.SaveChanges();</pre>
+			
+<h3>There is a third approach tha isn't used a lot by using Attach().</h3>
+</section>
+
+<section>
+<h2>Updating data</h2>
+<p>We have a very useful method Find(). It finds the object by id. It's like using Single weith a lambda expression. Also if
+your records have composite primary keys you can pass multiple values.
+</p>
+
+<pre>
+            var course3 = context.Courses.Find(12);// Single (c => c.Id == 12)
+            course3.Name = "Changed Name";
+            course3.AuthorId = 2;
+
+
+            context.SaveChanges();
+
+</pre>
+
+</section>
