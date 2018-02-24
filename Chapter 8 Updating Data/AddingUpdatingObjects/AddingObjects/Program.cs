@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System;
+using System.Data.Entity;
 
 namespace ExtensionMethods
 {
@@ -48,6 +49,30 @@ namespace ExtensionMethods
 
 
             //context.SaveChanges();
+
+            //Deleting a course with cascade delete on
+            var course4 = context.Courses.Find(11);
+            //context.Courses.Remove(course4);
+
+            //context.SaveChanges();
+
+            //Deleting an author with cascade delete off
+            //Won't work will throw an error since we must delete 
+            //var author2 = context.Authors.Find(6);
+            //context.Authors.Remove(author2);
+
+            //var author2 = context.Authors.Include(a => a.Courses).Single(a => a.Id == 2);
+            //context.Courses.RemoveRange(author2.Courses);
+            //context.Authors.Remove(author2);
+
+            //context.SaveChanges();
+
+            var entries = context.ChangeTracker.Entries<Author>();
+
+            foreach (var item in entries)
+            {
+                Console.WriteLine(item.State);
+            }
 
         }
     }

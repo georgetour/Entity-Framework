@@ -2,8 +2,8 @@
 <h1>Updating Data</h1>
 
 <section>
-<h2>Change Tracker</h2>
-<p>Inside the context we have a component called Change Tracker that is responsible for keeping track of the state of objects.
+<h2>ChangeTracker</h2>
+<p>Inside the context we have a component called ChangeTracker that is responsible for keeping track of the state of objects.
 When we add a new object in context change tracker sees that and marks it as a new object with the state of added.
 When we modify one of the existing objects in the context again change tracker sees that and changes the state of that object to modify it. Finally when we remove an existing object Change Tracker sets its to deleted.
 None of these modifications are reflected in the database. They all are in the memory.
@@ -103,5 +103,85 @@ your records have composite primary keys you can pass multiple values.
             context.SaveChanges();
 
 </pre>
+
+</section>
+
+<section>
+<h2>Removing Objects</h2>
+<h3>Cascade Delete</h3>
+<p>When using code first migrations by default cascade delete is enabled. We can see it disabled here :
+<img src="disabled_cascade_delete.jpg">
+</p>
+<pre>            var course4 = context.Courses.Find(11);
+            context.Courses.Remove(course4);
+
+            context.SaveChanges();</pre>
+<p>Since we have cascade delete all related atgs are automatically deleted.</p>
+
+<h3>Without Cascade Delete</h3>
+<p>Since we don 't have cascade delete on we need to explicity delete the courses first and then delete the author or the parent.
+<img src="cascade_delete_exception.jpg">
+We must always check the last exception and if it comes directly from SQL server it means entity framework did its job but the query couldn't be executed. In the exception as seen in cascade_delete_excpetion since we have courses depended from this author we must first delete these courses and then the author.
+</p>
+<h4>Wrong that will throw an error</h4>
+<pre>            var author2 = context.Authors.Find(6);
+            context.Authors.Remove(author2);
+
+            context.SaveChanges();</pre>
+
+<h4>Correct way</h4>
+<p>RemoveRange removes a list so you don't have to use a foreach. Find doesn't work with Include so we use Single.</p>
+
+<pre>            var author2 = context.Authors.Include(a => a.Courses).Single(a => a.Id == 2);
+            context.Courses.RemoveRange(author2.Courses);
+            context.Authors.Remove(author2);
+
+            context.SaveChanges();</pre>
+			
+<p>In most times we don't have to delete records from the database because we might need them in the future for historical reasons, we might made a mistake deleting them. So the best approach is to create another column and call it for example IsDeleted and will take a boolean variable. </p>
+</section>
+
+<section>
+<h2>Working with change Tracker</h2>
+<p>It's not used very often but we use it when we have any issues in our db context. ChangeTracker checks the state of an object
+Added, Modified ,Delete, Unchanged.When we call SaveChanges Entity framework will act Accordingly to these with SQL queries.
+<img src="changeTracker.jpg">
+</p>
+
+<h3>Show all entries</h3>
+<pre>context.ChangeTracker.Entries()</pre>
+
+<h3>Show all author entries</h3>
+<pre>context.ChangeTracker.Entries<Author>();</pre>
+
+<p>Then we iterate and see in our watch window what s happeining.</p>
+<pre>
+            foreach (var entry in entries)
+            {
+                Console.WriteLine(entry.State);
+            }
+</pre>
+
+<p>Also we have Reload which Reloads something directly from the database.</p>
+<pre>entry.Reload();</pre>
+
+</section>
+
+<section>
+<h2>LINQPad</h2>
+<p>LINQPad is an application that you can work with LINQ. You can download it from here : <a href="https://www.linqpad.net/">https://www.linqpad.net/</a> 
+At the left side we add a connection. We can connect to a database in our SQL server or to our DBContext in our application.
+If we already have a bbcontext we select EntityFramework DbContext. Then we choose the path for our assembly which is in the bin folder ->Debug of our project. Then we specify the configuration file.
+</p>
+
+<p>We don't have to type context just to drag and drop the table.
+<img src="linqpad.jpg">
+By pressing f5 we bring all courses which will return a dbset. Next to it we have SQL tab which shows the SQL query like SQL profiler.
+
+<img src="linqpad_sql_tab.jpg">
+
+</p>
+
+<p>LINQPad is easier than using watch window and inspecting variables there. Though THIS IS NOT a replacement for debugging and watching variables.</p>
 
 </section>
