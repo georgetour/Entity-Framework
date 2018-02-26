@@ -12,7 +12,7 @@ namespace Vidzy
 
         static void Main(string[] args)
         {
-            AddTagToVideo(1, "classics", "drama", "comedy");
+            
 
         }
 
@@ -81,6 +81,7 @@ namespace Vidzy
 
 
                 var video = context.Videos.SingleOrDefault(v => v.Id == videoID);
+                
                 tags.ForEach(t => video.AddTag(t));
 
                 context.SaveChanges();
@@ -88,6 +89,45 @@ namespace Vidzy
             }
         
         }
+
+
+        public static void RemoveTagFromVideo(int videoId, string tagName)
+        {
+            using (var context = new VidzyContext())
+            {
+               var video = context.Videos.SingleOrDefault(v => v.Id== videoId);
+
+                video.RemoveTag(tagName);
+                context.SaveChanges();          
+                
+            }
+        }
+
+
+        public static void RemoveVideo(int videoId)
+        {
+            using (var context =new VidzyContext())
+            {
+                var video = context.Videos.Find(videoId);
+
+                context.Videos.Remove(video);
+                context.SaveChanges();
+            }
+        }
+
+        public static void RemoveGenreAndRelatedVideos(int genreId)
+        {
+            using (var context = new VidzyContext())
+            {
+                var genre = context.Genres.Include(v => v.Videos).Single(g => g.Id == genreId);
+                context.Videos.RemoveRange(genre.Videos);
+                context.Genres.Remove(genre);
+
+                context.SaveChanges();
+            }
+
+            
+        } 
 
 
 
