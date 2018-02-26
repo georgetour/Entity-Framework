@@ -1,0 +1,159 @@
+<style>table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}</style>
+<h1>Entity framework usage</h1>
+
+<section>
+<h2>Repository pattern</h2>
+<p>It acts like an <strong>in-memory collection</strong> of domain objects. </p>
+<h3>Benefits</h3>
+<ul>
+<li>Minimizes duplicate query object
+<h4>Without repository pattern if we had to find top selling courses and need them to be displayed in 5 
+ areas we would have to duplicate the below code 5 times. </h4>
+<pre>var topSellingCourses = context.Courses
+		.Where(c => c.IsPublic && c.IsApproved)
+		.OrderByDescending(c => c.Sales)
+		.Take(10);</pre>
+		
+
+<h4>With repository pattern we will just have to create a method </h4>
+<pre>var topSellingCourses = repository.GetTopSellingCourses(category,count);</pre>
+</li>
+<li>Decouples your application from persistence frameworks(in our case entity framework, so in the future if you choose another framework you can do that with minimal impact on the rest of the the application)</li>
+<li>Promotes testability(half true since already in entity framework you can unit test fine)</li>
+
+</ul>
+
+<h3>What objects of the repository should do in general</h3>
+<ol>
+<li>Add(obj)</li>
+<li>Remove(obj)</li>
+<li>Get(id)</li>
+<li>GetAll()</li>
+<li>Find(predicate)</li>
+</ol>
+<p>A repository should not have Update. With a repository we get it from the collection and change it.
+A repository should not have semantics of our database. So we shouldn't have Update and Save since it's just a collection of objects in memory.
+</p>
+
+<h2>How to change these objects since we shouldn't do it in Repository pattern???</h2>
+<h2>Unit of Work comes into play</h2>
+<p>Maintains a list of objects affected by business transaction and coordinates the writing out of changes(by Martin Folwer)</p>
+
+<table>
+<tr>
+<th>**repository**</th>
+<th>**unit of work**</th>
+</tr>
+<tr>
+<td>Add(obj)</td>
+<td>DbSet</td>
+</tr>
+<td>Remove(obj)</td>
+<td>DbSet</td>
+</tr>
+<td>Find(obj)</td>
+<td>DbSet</td>
+</tr>
+<td>Where(obj)</td>
+<td>SaveChanges</td>
+</tr>
+</table>
+<p>When we use DbContext and DbAccess directly in our application our application is tighly coupled to entity framework. 
+If you will have to update entity framework or use it in a different project we will have to modify application code directly.
+By using a repository our application code will not be affected in any way. Everything will be handled by the repository.
+</p>
+<div style="border:1px solid black;">
+<h3>Clean Architecture</h3>
+<h3 style="font-size:30px;">The architecture should be independent of frameworks(Robertson Martin)</h3>
+<div style="width:25%;text-align:right;">
+<h3 >Simplicity is the ultimate sophistication.</h3>
+<p>Leonardo Da Vinci</p>
+</div>
+</div>
+<p>Not all applications though need these patterns. Maybe sometimes would be an overkill or your application changes or it does never gets published.</p>
+</section>
+
+<section>
+<h2>Using repository pattern</h2>
+<h3>IRepository</h3>
+<ol>
+<li>Add()</li>
+<li>Remove()</li>
+<li>Get(id)</li>
+<li>Find(predicate)</li>
+</ol>
+<p>Next we will implement this class in Repository class. For each entity we will have a repository.
+
+</p>
+<table>
+<tr>
+<th><h2>IRepository</h2></th>
+<th></th>
+</tr>
+<tr>
+
+<td><h3>ICourseRepository</h3></td>
+<td>- Define any opeations specific to courses that are not in IRepository</td>
+</tr>
+
+<tr>
+<th></th>
+<th><h4>Repository(class)</h4></th>
+</tr>
+
+<tr>
+<td> </td>
+<td> GetTopSellingCourses()</td>
+</tr>
+
+<tr>
+<td> </td>
+<td> GetCoursesWithAuthors()</td>
+
+</tr>
+
+<tr>
+</table>
+<p>Finally we need an IUnitOfWork so we can update and save changes.</p>
+<table>
+<tr>
+<th><h2>IUnitOfWork</h2></th>
+<th></th>
+<th></th>
+</tr>
+
+<tr>
+<td>ICourseRepository Courses{get;}</td>
+<td>IAuthorRepository Authors{get;}</td>
+<td>void Complete();</td>
+</tr>
+
+<tr>
+<th><h4>UnitOfWork(class)</h4></th>
+<th></th>
+<th></th>
+</tr>
+
+
+
+<tr>
+</table>
+
+
+</section>
+
+
