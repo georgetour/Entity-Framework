@@ -152,8 +152,39 @@ By using a repository our application code will not be affected in any way. Ever
 
 <tr>
 </table>
+</section>
 
+<section>
+<h2>Structuring An Application</h2>
+<ul>
+<li><h3>Presentation</h3>
+<ul>
+<li>Form</li>
+<li>ViewModel</li>
+<li>Controller</li>
+</ul>
+</li>
+<li><h3>Business Logic/Core</h3>
+<p>We have all our core and logic without any presentation or data access technologies.</p>
+<ul>
+<li>Domain classes(entities in our project Author.cs for example)</li>
+<li>Services</li>
+<li>Interfaces</li>
+</ul>
+</li>
 
+<li><h3>Data Access</h3>
+<p>We implement all these interfaces.</p>
+<ul>
+<li>UnitOfWork</li>
+<li>Repository</li>
+<li>CourseRepository</li>
+<li>PlutoContext</li>
+</ul>
+</li>
+</ul>
+<p>In this architecture Data Access layer is dependent from Business Logic/ Core. For example UnitOfWork inherits from 
+IUnitOfWork.</p>
 </section>
 
 
